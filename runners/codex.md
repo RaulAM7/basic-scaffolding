@@ -5,3 +5,4 @@
 3. Execute from one active spec only.
 4. Store final artifacts in `04_outputs/`.
 5. Complete QA checklist before marking done.
+6. For reusable spec-driving runs, use `shared/flows/spec-driving/` and the repo-local `.codex/commands/spec-drive-*.md` prompts.

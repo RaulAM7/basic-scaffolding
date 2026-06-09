@@ -5,3 +5,4 @@
 3. Keep context distilled in `02_context/` and work from one spec.
 4. Route deliverables to `04_outputs/`.
 5. Finish with QA gate verification.
+6. For reusable spec-driving runs, follow `shared/flows/spec-driving/` contracts.

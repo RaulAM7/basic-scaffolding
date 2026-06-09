@@ -5,3 +5,4 @@
 3. Keep one active spec in `03_specs/now/`.
 4. Write final deliverables to `04_outputs/`.
 5. Run QA gate from `TASKFLOW.md` before closing.
+6. For reusable spec-driving runs, use `shared/flows/spec-driving/` and `.claude/commands/spec-drive-*.md`.

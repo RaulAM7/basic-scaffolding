@@ -6,3 +6,5 @@
 - `ship-output` (light): produces the final deliverable in `04_outputs/`.
 - `qa-review` (light): validates output against acceptance checklist.
 - `skill-creator` (strategic/heavy): creates and iterates skills with eval loop.
+- `spec-driving` (workflow/heavy): runs the reusable staged spec-driving flow in `04_outputs/spec-driving/<case_id>/`.
+- `spec-driving-qa` (gate/light): reviews spec-driving stage artifacts with PASS/FAIL/BLOCKED/SKIPPED evidence.
