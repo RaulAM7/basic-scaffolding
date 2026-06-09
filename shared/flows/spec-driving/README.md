@@ -1,4 +1,4 @@
-# Spec-Driving Flow
+# Spec-Driven Flow
 
 Flujo reutilizable para convertir material caótico de un cliente, producto o
 proyecto en artefactos de preventa validados por etapas.
