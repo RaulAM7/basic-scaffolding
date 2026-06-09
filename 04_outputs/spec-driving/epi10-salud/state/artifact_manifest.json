@@ -27,13 +27,13 @@
     "02": {
       "stage_id": "02",
       "expected_path": "artifacts/02_mvp_scope_decision_v1.md",
-      "current_path": null,
-      "latest_review_path": null,
-      "approved_review_path": null,
-      "latest_verdict": null,
-      "iteration_count": 0,
+      "current_path": "artifacts/02_mvp_scope_decision_v1.md",
+      "latest_review_path": "reviews/stage_02_review_iter_01.md",
+      "approved_review_path": "reviews/stage_02_review_iter_01.md",
+      "latest_verdict": "PASS",
+      "iteration_count": 1,
       "source_required": true,
-      "status": "READY"
+      "status": "PASSED"
     },
     "03": {
       "stage_id": "03",
@@ -44,7 +44,7 @@
       "latest_verdict": null,
       "iteration_count": 0,
       "source_required": true,
-      "status": "PENDING"
+      "status": "READY"
     },
     "04": {
       "stage_id": "04",

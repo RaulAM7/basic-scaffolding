@@ -3,12 +3,12 @@
   "run_id": "epi10-salud-20260609",
   "mode": "standard",
   "run_status": "IN_PROGRESS",
-  "active_stage": "02",
+  "active_stage": "03",
   "stage_statuses": {
     "00": "PASSED",
     "01": "PASSED",
-    "02": "READY",
-    "03": "PENDING",
+    "02": "PASSED",
+    "03": "READY",
     "04": "PENDING",
     "06": "PENDING"
   },
@@ -22,12 +22,13 @@
   },
   "review_paths": {
     "00": "reviews/stage_00_review_iter_01.md",
-    "01": "reviews/stage_01_review_iter_01.md"
+    "01": "reviews/stage_01_review_iter_01.md",
+    "02": "reviews/stage_02_review_iter_01.md"
   },
   "iteration_counts": {
     "00": 1,
     "01": 1,
-    "02": 0,
+    "02": 1,
     "03": 0,
     "04": 0,
     "06": 0
@@ -36,7 +37,7 @@
   "blocked_questions": [],
   "assumptions": [],
   "overrides": [],
-  "last_action": "Stage 01 passed review.",
-  "next_action": "Run Stage 02 MVP Scope Decision.",
+  "last_action": "Stage 02 passed review.",
+  "next_action": "Run Stage 03 Technical Pre-Sales Blueprint.",
   "updated_at": "2026-06-09"
 }
