@@ -482,6 +482,199 @@ Comandos disponibles:
 En Codex, `.codex/commands` es una convención local de este repo. El
 comportamiento real lo definen los contratos dentro de `shared/flows/spec-driving/`.
 
+## Arranque Desde Cero
+
+Esta es la secuencia práctica cuando tienes material caótico de un caso nuevo y
+quieres iniciar una run.
+
+```mermaid
+flowchart TD
+  A[1. Elige case_id<br/>ej: acme-crm] --> B[2. Ejecuta init]
+  B --> C[3. Se crea la carpeta de run]
+  C --> D[4. Mete material inicial en raw/]
+  D --> E[5. Ejecuta Stage 00]
+  E --> F{Review 00}
+  F -- PASS --> G[6. Sigue con Stage 01]
+  F -- FAIL --> H[Corrige Stage 00]
+  F -- BLOCKED --> I[Aporta info faltante en raw/]
+  H --> E
+  I --> E
+```
+
+### Paso 1 - Elige un `case_id`
+
+El `case_id` es el nombre corto de la run. Usa algo estable, sin espacios y
+fácil de reconocer.
+
+Ejemplos:
+
+```text
+acme-crm
+clinica-ventas
+cliente-x-presales
+```
+
+Ese nombre se usará aquí:
+
+```text
+04_outputs/spec-driving/<case_id>/
+```
+
+### Paso 2 - Inicializa la run
+
+Pide al agente:
+
+```text
+Usa spec-drive-init acme-crm
+```
+
+Si tu herramienta muestra comandos slash, puedes usar el comando equivalente.
+Si no aparece como slash command, escribe la frase anterior tal cual. El contrato
+lo resuelve desde `.codex/commands/` o `.claude/commands/`.
+
+El init debe crear esto:
+
+```text
+04_outputs/spec-driving/acme-crm/
+  run_config.yaml
+  raw/
+    README.md
+  context/
+  artifacts/
+    _iterations/
+  reviews/
+  handoffs/
+  state/
+    run_state.json
+    artifact_manifest.json
+  logs/
+```
+
+Importante: `init` solo crea la estructura. No analiza el caso, no escribe
+propuesta y no genera artefactos de negocio.
+
+### Paso 3 - Mete el material inicial
+
+Después de `init`, mete todo el material bruto aquí:
+
+```text
+04_outputs/spec-driving/acme-crm/raw/
+```
+
+Ahí va lo inicial:
+
+- notas de llamada;
+- emails copiados;
+- transcripciones;
+- bullets;
+- documentos exportados;
+- historias de usuario;
+- requisitos sueltos;
+- links pegados en un `.md`;
+- cualquier texto que explique el caso.
+
+No lo metas en `00_inbox/` para este flujo. `00_inbox/` pertenece al harness
+general, no a las runs aisladas de `spec-driving`.
+
+Ejemplo:
+
+```text
+04_outputs/spec-driving/acme-crm/raw/
+  README.md
+  llamada_inicial.md
+  notas_comerciales.md
+  user_stories.md
+  restricciones_tecnicas.md
+```
+
+El material puede estar desordenado. No hace falta limpiarlo antes. Stage 00
+existe precisamente para convertir ese caos en contexto trazable.
+
+### Paso 4 - Revisa `run_config.yaml`
+
+Antes de ejecutar etapas, mira:
+
+```text
+04_outputs/spec-driving/acme-crm/run_config.yaml
+```
+
+Por defecto debe tener algo así:
+
+```yaml
+case_id: "acme-crm"
+artifact_language: "es"
+execution_plan_enabled: false
+```
+
+Deja `execution_plan_enabled: false` si solo quieres preventa hasta propuesta
+comercial. Ponlo en `true` solo si quieres permitir Stage 06, que ya es plan de
+ejecución.
+
+### Paso 5 - Ejecuta Stage 00
+
+Cuando el material ya esté en `raw/`, pide:
+
+```text
+Usa spec-drive-stage acme-crm 00
+```
+
+Esto debe producir:
+
+```text
+04_outputs/spec-driving/acme-crm/context/00_intake_context_pack.md
+```
+
+y también un review:
+
+```text
+04_outputs/spec-driving/acme-crm/reviews/stage_00_review_iter_01.md
+```
+
+### Paso 6 - Mira el verdict
+
+Si Stage 00 da `PASS`, puedes seguir:
+
+```text
+Usa spec-drive-stage acme-crm 01
+```
+
+Si da `FAIL`, no sigas a Stage 01. Corrige el intake context pack con el feedback
+del review y vuelve a revisar Stage 00.
+
+Si da `BLOCKED`, falta información. Añade esa información en `raw/` o donde diga
+el orquestador, y vuelve a ejecutar Stage 00.
+
+## Chuleta de Uso Rápido
+
+```text
+# 1. Crear run
+Usa spec-drive-init acme-crm
+
+# 2. Meter material inicial aquí
+04_outputs/spec-driving/acme-crm/raw/
+
+# 3. Crear contexto trazable
+Usa spec-drive-stage acme-crm 00
+
+# 4. Auditar problemas
+Usa spec-drive-stage acme-crm 01
+
+# 5. Decidir MVP
+Usa spec-drive-stage acme-crm 02
+
+# 6. Blueprint preventa
+Usa spec-drive-stage acme-crm 03
+
+# 7. Propuesta comercial
+Usa spec-drive-stage acme-crm 04
+
+# 8. Si no hay ejecución, saltar Stage 06
+Usa spec-drive-skip acme-crm 06
+
+# 9. Sacar índice final
+Usa spec-drive-export acme-crm
+```
+
 ## Cómo Usarlo en la Práctica
 
 ### 1. Inicializa una run
