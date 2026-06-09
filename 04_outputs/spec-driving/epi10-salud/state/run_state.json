@@ -3,11 +3,11 @@
   "run_id": "epi10-salud-20260609",
   "mode": "standard",
   "run_status": "IN_PROGRESS",
-  "active_stage": "01",
+  "active_stage": "02",
   "stage_statuses": {
     "00": "PASSED",
-    "01": "READY",
-    "02": "PENDING",
+    "01": "PASSED",
+    "02": "READY",
     "03": "PENDING",
     "04": "PENDING",
     "06": "PENDING"
@@ -21,11 +21,12 @@
     "06": "artifacts/06_execution_plan_v1.md"
   },
   "review_paths": {
-    "00": "reviews/stage_00_review_iter_01.md"
+    "00": "reviews/stage_00_review_iter_01.md",
+    "01": "reviews/stage_01_review_iter_01.md"
   },
   "iteration_counts": {
     "00": 1,
-    "01": 0,
+    "01": 1,
     "02": 0,
     "03": 0,
     "04": 0,
@@ -35,7 +36,7 @@
   "blocked_questions": [],
   "assumptions": [],
   "overrides": [],
-  "last_action": "Stage 00 passed review.",
-  "next_action": "Run Stage 01 Problem Audit.",
+  "last_action": "Stage 01 passed review.",
+  "next_action": "Run Stage 02 MVP Scope Decision.",
   "updated_at": "2026-06-09"
 }
