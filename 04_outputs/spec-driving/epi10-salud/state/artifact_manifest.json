@@ -26,12 +26,12 @@
     },
     "02": {
       "stage_id": "02",
-      "expected_path": "artifacts/02_mvp_scope_decision_v1.md",
-      "current_path": "artifacts/02_mvp_scope_decision_v1.md",
-      "latest_review_path": "reviews/stage_02_review_iter_01.md",
-      "approved_review_path": "reviews/stage_02_review_iter_01.md",
+      "expected_path": "artifacts/02_mvp_scope_decision_v2.md",
+      "current_path": "artifacts/02_mvp_scope_decision_v2.md",
+      "latest_review_path": "reviews/stage_02_review_iter_02.md",
+      "approved_review_path": "reviews/stage_02_review_iter_02.md",
       "latest_verdict": "PASS",
-      "iteration_count": 1,
+      "iteration_count": 2,
       "source_required": true,
       "status": "PASSED"
     },
