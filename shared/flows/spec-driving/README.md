@@ -33,6 +33,56 @@ desordenadas. El objetivo es pasar por una secuencia controlada:
 Cada etapa genera un artefacto principal. Ese artefacto debe pasar una revisión
 real antes de que el orquestador pueda avanzar.
 
+## Vista Visual del Flujo
+
+```mermaid
+flowchart TD
+  A[Material bruto en raw/] --> B[Stage 00<br/>Intake Context Pack]
+  B --> R00{Review 00}
+  R00 -- PASS --> C[Stage 01<br/>Problem Audit]
+  R00 -- FAIL --> B
+  R00 -- BLOCKED --> Q[Preguntas bloqueantes]
+
+  C --> R01{Review 01}
+  R01 -- PASS --> D[Stage 02<br/>MVP Scope Decision]
+  R01 -- FAIL --> C
+  R01 -- BLOCKED --> Q
+
+  D --> R02{Review 02}
+  R02 -- PASS --> E[Stage 03<br/>Technical Pre-Sales Blueprint]
+  R02 -- FAIL --> D
+  R02 -- BLOCKED --> Q
+
+  E --> R03{Review 03}
+  R03 -- PASS --> F[Stage 04<br/>Commercial Proposal]
+  R03 -- FAIL --> E
+  R03 -- BLOCKED --> Q
+
+  F --> R04{Review 04}
+  R04 -- FAIL --> F
+  R04 -- BLOCKED --> Q
+  R04 -- PASS --> G{execution_plan_enabled?}
+
+  G -- false --> H[Pre-sales complete<br/>Stage 06 skipped]
+  G -- true --> I[Stage 06<br/>Execution Plan]
+
+  I --> R06{Review 06}
+  R06 -- PASS --> J[Implementation ready]
+  R06 -- FAIL --> I
+  R06 -- BLOCKED --> Q
+  R06 -- SKIPPED --> H
+
+  Q --> A
+```
+
+Lectura rápida:
+
+- Cada caja grande produce un artefacto.
+- Cada rombo es un gate real de revisión.
+- `FAIL` vuelve a la misma etapa.
+- `BLOCKED` para la run hasta aportar información.
+- Stage 06 solo existe si `execution_plan_enabled: true`.
+
 ## Fuente de Verdad
 
 - Reglas del orquestador: `references/orchestrator-contract.md`
@@ -47,6 +97,43 @@ Si hay duda entre una explicación resumida y un contrato, manda el contrato.
 ## El Equipo
 
 El flujo se comporta como un pequeño equipo agentic.
+
+```mermaid
+flowchart LR
+  OP[Operador humano] --> CMD[Comandos<br/>spec-drive-*]
+  CMD --> ORCH[spec-driving-orchestrator]
+
+  ORCH --> S00[Stage 00 Agent]
+  ORCH --> S01[Stage 01 Agent]
+  ORCH --> S02[Stage 02 Agent]
+  ORCH --> S03[Stage 03 Agent]
+  ORCH --> S04[Stage 04 Agent]
+  ORCH --> S06[Stage 06 Agent]
+
+  S00 --> ART[Artefacto de etapa]
+  S01 --> ART
+  S02 --> ART
+  S03 --> ART
+  S04 --> ART
+  S06 --> ART
+
+  ART --> REV[spec-driving-reviewer]
+  REV --> VERDICT{PASS<br/>FAIL<br/>BLOCKED<br/>SKIPPED}
+  VERDICT --> ORCH
+
+  ORCH --> STATE[state/run_state.json]
+  ORCH --> MANIFEST[state/artifact_manifest.json]
+  ORCH --> EXPORT[handoffs/export_index.md]
+```
+
+El reparto es simple:
+
+- El operador da intención y material.
+- Los comandos activan el flujo.
+- El orquestador coordina y actualiza estado.
+- Los agentes de etapa producen artefactos.
+- El reviewer decide si se puede avanzar.
+- El estado y manifest dejan rastro operativo.
 
 | Rol | Archivo | Responsabilidad |
 | --- | --- | --- |
@@ -74,6 +161,37 @@ Hay dos skills principales:
 
 La skill `spec-driving` sirve para producir y coordinar. La skill
 `spec-driving-qa` sirve para bloquear falsos avances.
+
+## Mapa Etapa por Etapa
+
+| Etapa | Agente productor | Skill principal | Artefacto | Gate |
+| --- | --- | --- | --- | --- |
+| 00 | `spec-driving-stage-00-intake` | `spec-driving` | `context/00_intake_context_pack.md` | `spec-driving-reviewer` + `spec-driving-qa` |
+| 01 | `spec-driving-stage-01-problem-audit` | `spec-driving` | `artifacts/01_problem_audit_v1.md` | `spec-driving-reviewer` + `spec-driving-qa` |
+| 02 | `spec-driving-stage-02-scope-decision` | `spec-driving` | `artifacts/02_mvp_scope_decision_v1.md` | `spec-driving-reviewer` + `spec-driving-qa` |
+| 03 | `spec-driving-stage-03-presales-blueprint` | `spec-driving` | `artifacts/03_technical_presales_blueprint_v1.md` | `spec-driving-reviewer` + `spec-driving-qa` |
+| 04 | `spec-driving-stage-04-commercial-proposal` | `spec-driving` | `artifacts/04_commercial_proposal_v1.md` | `spec-driving-reviewer` + `spec-driving-qa` |
+| 06 | `spec-driving-stage-06-execution-plan` | `spec-driving` | `artifacts/06_execution_plan_v1.md` | `spec-driving-reviewer` + `spec-driving-qa` |
+
+```mermaid
+flowchart TB
+  subgraph P[Produccion]
+    A[Agente de etapa] --> S[skill: spec-driving]
+    S --> T[Template de etapa]
+    T --> O[Artefacto canonico]
+  end
+
+  subgraph QG[Gate]
+    O --> RV[spec-driving-reviewer]
+    RV --> QS[skill: spec-driving-qa]
+    QS --> V{Verdict}
+  end
+
+  V -- PASS --> N[Siguiente etapa]
+  V -- FAIL --> A
+  V -- BLOCKED --> B[Preguntas bloqueantes]
+  V -- SKIPPED --> X[Solo Stage 06]
+```
 
 ## Ubicación de Runs
 
@@ -138,6 +256,14 @@ operativo viven dentro de Stage 04.
 
 Ordena el material bruto sin resolver todavía el proyecto.
 
+```text
+Input:  raw/
+Agent:  spec-driving-stage-00-intake
+Skill:  spec-driving
+Output: context/00_intake_context_pack.md
+Gate:   spec-driving-reviewer + spec-driving-qa
+```
+
 Extrae:
 
 - resumen del proyecto;
@@ -161,6 +287,14 @@ El punto clave de Stage 00 es la trazabilidad. Cada fuente recibe un id como
 
 Detecta qué problemas existen de verdad.
 
+```text
+Input:  context/00_intake_context_pack.md aprobado
+Agent:  spec-driving-stage-01-problem-audit
+Skill:  spec-driving
+Output: artifacts/01_problem_audit_v1.md
+Gate:   spec-driving-reviewer + spec-driving-qa
+```
+
 No acepta automáticamente deseos, ideas de implementación o intuiciones como si
 fueran problemas. Para cada problema debe quedar claro:
 
@@ -175,6 +309,14 @@ fueran problemas. Para cada problema debe quedar claro:
 ### Stage 02 - MVP Scope Decision
 
 Toma una decisión. No basta con listar opciones.
+
+```text
+Input:  Stage 00 + Stage 01 aprobados
+Agent:  spec-driving-stage-02-scope-decision
+Skill:  spec-driving
+Output: artifacts/02_mvp_scope_decision_v1.md
+Gate:   spec-driving-reviewer + spec-driving-qa
+```
 
 Define:
 
@@ -200,6 +342,14 @@ Los nombres propios solo deben usarse si aparecen en las fuentes de esa run.
 Produce el blueprint técnico-funcional que permite vender y cotizar con más
 confianza.
 
+```text
+Input:  Stage 00 + Stage 01 + Stage 02 aprobados
+Agent:  spec-driving-stage-03-presales-blueprint
+Skill:  spec-driving
+Output: artifacts/03_technical_presales_blueprint_v1.md
+Gate:   spec-driving-reviewer + spec-driving-qa
+```
+
 Incluye arquitectura al nivel justo, módulos, usuarios, workflows,
 integraciones, automatizaciones, objetos de datos, estados, triggers,
 dependencias, riesgos, supuestos, entregables y fases.
@@ -210,6 +360,14 @@ de issues, tareas atómicas o árbol de repositorio.
 ### Stage 04 - Commercial Proposal
 
 Convierte el blueprint aprobado en una propuesta comercial.
+
+```text
+Input:  Stage 03 aprobado
+Agent:  spec-driving-stage-04-commercial-proposal
+Skill:  spec-driving
+Output: artifacts/04_commercial_proposal_v1.md
+Gate:   spec-driving-reviewer + spec-driving-qa
+```
 
 Incluye:
 
@@ -229,6 +387,14 @@ La propuesta no puede inventar alcance técnico que no esté en Stage 03.
 ### Stage 06 - Execution Plan
 
 Solo se genera si `run_config.yaml` tiene:
+
+```text
+Input:  Stage 04 aprobado + execution_plan_enabled: true
+Agent:  spec-driving-stage-06-execution-plan
+Skill:  spec-driving
+Output: artifacts/06_execution_plan_v1.md
+Gate:   spec-driving-reviewer + spec-driving-qa
+```
 
 ```yaml
 execution_plan_enabled: true
