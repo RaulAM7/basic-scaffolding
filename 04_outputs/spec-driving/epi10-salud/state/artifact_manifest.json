@@ -56,14 +56,22 @@
     },
     "04": {
       "stage_id": "04",
-      "expected_path": "artifacts/04_commercial_proposal_v1.md",
-      "current_path": null,
-      "latest_review_path": null,
-      "approved_review_path": null,
-      "latest_verdict": null,
-      "iteration_count": 0,
+      "expected_path": "artifacts/04_commercial_proposal_longform_v1.md",
+      "current_path": "artifacts/04_commercial_proposal_longform_v1.md",
+      "latest_review_path": "reviews/stage_04_review_iter_01.md",
+      "approved_review_path": "reviews/stage_04_review_iter_01.md",
+      "latest_verdict": "PASS",
+      "iteration_count": 1,
       "source_required": true,
-      "status": "READY"
+      "status": "PASSED",
+      "reference_structure_path": "raw/reference-propuesta-skillradar-fer.md",
+      "supporting_artifacts": [
+        "artifacts/04_budget_and_conditions_v1.md",
+        "artifacts/04_external_costs_table_v1.md",
+        "artifacts/04_scope_inclusions_exclusions_v1.md",
+        "artifacts/04_roadmap_v1.md",
+        "artifacts/04_roi_operational_value_v1.md"
+      ]
     },
     "06": {
       "stage_id": "06",
