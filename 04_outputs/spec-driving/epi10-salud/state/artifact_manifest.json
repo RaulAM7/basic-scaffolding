@@ -37,14 +37,22 @@
     },
     "03": {
       "stage_id": "03",
-      "expected_path": "artifacts/03_technical_presales_blueprint_v1.md",
-      "current_path": "artifacts/03_technical_presales_blueprint_v1.md",
-      "latest_review_path": "reviews/stage_03_review_iter_01.md",
-      "approved_review_path": "reviews/stage_03_review_iter_01.md",
+      "expected_path": "artifacts/03_technical_presales_blueprint_v2.md",
+      "current_path": "artifacts/03_technical_presales_blueprint_v2.md",
+      "latest_review_path": "reviews/stage_03_review_iter_02.md",
+      "approved_review_path": "reviews/stage_03_review_iter_02.md",
       "latest_verdict": "PASS",
-      "iteration_count": 1,
+      "iteration_count": 2,
       "source_required": true,
-      "status": "PASSED"
+      "status": "PASSED",
+      "iteration_source_path": "raw/cto-stage-03-iteration-2-direction.md",
+      "supporting_artifacts": [
+        "artifacts/03_cto_decision_docket_v1.md",
+        "artifacts/03_commercial_technical_framing_v1.md",
+        "artifacts/03_epi10_salud_mvp_1_0_blueprint_v1.md",
+        "artifacts/03_informe_final_copilot_blueprint_v1.md",
+        "artifacts/03_external_cost_inputs_v1.md"
+      ]
     },
     "04": {
       "stage_id": "04",
