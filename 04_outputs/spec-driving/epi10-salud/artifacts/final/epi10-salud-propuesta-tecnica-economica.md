@@ -2,60 +2,143 @@
 
 ## EPI10 Salud MVP 1.0
 
-> Software propio para operación, portal cliente, backoffice e informe final asistido
+> Primer activo software propio para portal cliente, backoffice, control operativo y producción del informe final.
 
 Documento confidencial · Uso exclusivo de EPI10 Salud
 
+EPI10 Salud MVP 1.0 es una propuesta pragmática para lanzar una nueva línea de negocio sin construir una plataforma sanitaria completa desde el primer día, pero evitando también caer en automatizaciones sueltas que resuelven algo hoy y mañana hay que rehacer porque no conforman una base sólida sobre la que crecer.
+
+La propuesta combina herramientas existentes, como Healthie y Odoo, con una primera capa software propia desplegada en AWS España. El objetivo es ordenar y automatizar las operaciones manuales, cuidar la experiencia de cliente y dejar a EPI10 Salud una base acumulativa sobre la que poder seguir construyendo.
+
 | Concepto | Detalle |
 | --- | --- |
-| Precio del proyecto | **4.700 € + IGIC no incluido** |
+| Precio estándar | **5.500 € + IGIC no incluido** |
+| Oferta especial de lanzamiento | **4.700 € + IGIC no incluido** para aprobaciones formalizadas antes del **30 de junio de 2026** |
 | Plazo estimado | **8 semanas desde kick-off y accesos confirmados** |
 | Soporte incluido | **6 meses desde la entrega formal** |
 | Dirigida a | **EPI10 Salud — A la atención de Carmen Sosa** |
 | Elaborado por | **Reboot Academy / Skilland — Equipo técnico liderado por Fernando Martín Santana** |
-| Fecha | **11 de junio de 2026** |
+| Fecha | **12 de junio de 2026** |
 
-## 1. El problema
+## 1. El riesgo de lanzar con la operación dispersa
 
-EPI10 Salud está en el momento de convertir una propuesta de alto valor en una operación real, repetible y controlada. El objetivo no es diseñar una plataforma sanitaria completa desde cero, sino poner en marcha una primera fase práctica, segura y suficientemente sólida para operar cuanto antes con herramientas existentes y con una primera base software propia.
+EPI10 Salud está en el momento de convertir una propuesta de alto valor en una operación real, repetible y controlada. El riesgo no es solo técnico. Es operativo, comercial y de experiencia cliente.
 
-Hoy el flujo operativo depende de demasiadas piezas que todavía no están orquestadas entre sí: web/pago, Odoo, Healthie como posible portal cliente, TellmeGen, analíticas/documentos, producción del informe final y seguimiento posterior.
+Una nueva línea de negocio puede tener un posicionamiento muy potente, pero si la operación interna depende de demasiadas piezas desconectadas, cada nuevo cliente añade fricción: más coordinación manual, más revisiones, más pasos pendientes de recordar y más posibilidades de que algo se pierda entre herramientas.
 
-Cuando esas piezas no están coordinadas por un sistema claro, Aitor y el equipo operativo acaban actuando como “middleware humano”: revisan estados, mueven información, recuerdan próximos pasos, coordinan herramientas y se aseguran de que cada cliente avance correctamente. Esto puede funcionar al principio, pero introduce tres riesgos importantes:
+Hoy el flujo natural de EPI10 combina web/pago, portal cliente, Odoo, documentos, analíticas, informe final y seguimiento. Si esas piezas no están orquestadas, el equipo termina haciendo de “middleware humano”: conectando procesos a mano, comprobando estados, moviendo información, persiguiendo documentos y asegurándose de que cada cliente avanza.
 
-- dependencia excesiva de personas concretas;
-- riesgo de errores, olvidos o doble entrada;
-- dificultad para escalar sin aumentar la carga operativa de forma lineal.
+Eso puede funcionar con pocos casos. Pero no escala bien.
 
-Además, la experiencia cliente puede quedar fragmentada si formularios, consentimientos, cuestionarios, analíticas, comunicación e informe final se gestionan por canales separados.
+El problema no es solo ahorrar horas. El problema es que una operación fragmentada puede degradar la experiencia de un producto premium justo en el momento de salir al mercado.
 
-Para Carmen, la oportunidad de esta primera fase es clara: ordenar el servicio, profesionalizar la relación con el cliente, reducir manualidad, mejorar trazabilidad y construir una operación más segura sin sobredimensionar el proyecto.
+Una experiencia cliente cuidada necesita continuidad: onboarding claro, formularios ordenados, consentimientos controlados, documentación centralizada, comunicación profesional, informe final bien entregado y seguimiento visible. Si todo eso vive en canales separados, la percepción del servicio puede resentirse aunque el valor clínico o técnico sea alto.
 
-Hay una restricción técnica relevante: TellmeGen no dispone actualmente de una API operativa para partners. Por tanto, la integración genética automática no puede ser el núcleo de Fase 1. El problema real de esta fase es construir un sistema operativo inicial para EPI10 Salud, capaz de operar mejor ahora y preparado para crecer después.
+EPI10 no necesita una plataforma sanitaria completa desde el día uno, pero tampoco necesita una colección de automatizaciones sueltas que mañana haya que rehacer. Necesita una primera base software propia, pequeña pero bien diseñada.
 
-## 2. La solución
+## 2. La solución: EPI10 Salud MVP 1.0
 
-# EPI10 Salud MVP 1.0
+**EPI10 Salud MVP 1.0** es una primera capa software propia, desarrollada a medida y desplegada en AWS España, que permite ordenar el lanzamiento, conectar piezas críticas y dejar una base acumulativa para seguir construyendo.
 
-Proponemos desarrollar **EPI10 Salud MVP 1.0**: una primera aplicación/capa software propia de EPI10, desarrollada a medida y desplegada en **AWS España**, que conecta web/pago, Healthie y Odoo, automatiza estados y tareas, centraliza parte del flujo operativo y habilita la entrega trazable del informe final.
+No es una conexión puntual entre herramientas. No es un apaño entre formularios y Odoo. No es una automatización de usar y tirar.
 
-EPI10 Salud MVP 1.0 no es una simple conexión entre SaaS. Es una primera capa software propia de EPI10, desarrollada a medida, desplegada en AWS España, que orquesta web/pago, Healthie y Odoo, automatiza estados y tareas, reduce carga operativa y habilita la entrega trazable del informe final.
+Es el primer activo software propio de EPI10 para operar la Fase 1 con más control:
 
-Esta capa queda diseñada como una **base ampliable** para futuras fases. La idea es usar herramientas existentes para acelerar el MVP, pero construir desde el inicio una base software propia que pueda ir absorbiendo capacidades críticas del negocio conforme EPI10 crezca.
+- Healthie cubre el portal cliente.
+- Odoo cubre el backoffice operativo.
+- La capa de software, servicios y lógica de negocio propia de EPI10 Salud MVP 1.0 orquesta eventos, estados, tareas y trazabilidad.
+- EPI10 Informe Final Copilot ayuda a preparar borradores internos del informe final.
+- AWS España aloja la base técnica propia de esta primera fase.
 
-En esta arquitectura:
+La lógica comercial es sencilla: usar herramientas existentes para lanzar rápido, pero construir desde el inicio una base software propia que pueda ir absorbiendo capacidades críticas del negocio conforme EPI10 crezca.
 
-- **Healthie** actúa como hipótesis principal de portal cliente.
-- **Odoo** actúa como backoffice operativo.
-- **AWS España** aloja la capa propia.
-- **EPI10 Informe Final Copilot** asiste la producción del informe final.
-- **TellmeGen queda como sistema externo no integrado en Fase 1** por no disponer de API operativa actual.
+Esta base permite empezar pequeño sin construir en falso. EPI10 obtiene una operación más ordenada ahora y una plataforma de crecimiento para fases posteriores.
 
-El resultado es un primer **activo tecnológico propio** de EPI10 para operar, medir, controlar y evolucionar el servicio.
+## 3. Valor para producto, operación y dirección
 
-## 3. Arquitectura funcional
+### Producto y experiencia cliente
 
-La arquitectura funcional puede entenderse así:
+EPI10 Salud MVP 1.0 ayuda a convertir una propuesta de servicio compleja en una experiencia más clara para el cliente final. El portal cliente permite centralizar onboarding, formularios, consentimientos, cuestionarios, documentos, analíticas, comunicación y entrega de informes.
+
+Esto reduce la sensación de proceso fragmentado y mejora la percepción de solidez del producto. Para una línea de salud personalizada, esa percepción importa: el cliente no solo valora el resultado final, también valora cómo se le acompaña durante el proceso.
+
+### Operación interna
+
+La operación gana control. Odoo pasa a funcionar como backoffice operativo para estados, tareas, responsables, fechas y seguimiento. La capa propia evita que cada evento dependa de memoria humana o coordinación manual.
+
+El objetivo no es eliminar todo el trabajo del equipo, sino quitar fricción repetitiva: menos doble entrada, menos pasos olvidados, menos documentos dispersos, más claridad sobre qué falta y qué toca hacer.
+
+### Dirección y visión estratégica
+
+La inversión es acotada, pero acumulativa. EPI10 no compra solo una configuración inicial; compra una primera base software propia sobre la que podrá construir más automatización, más reporting, mejor producción del informe final y futuras capacidades propias.
+
+Esta es la diferencia clave frente a automatizaciones sueltas: el dinero invertido no se pierde en parches aislados. Se convierte en un primer cimiento técnico para una visión mayor.
+
+## 4. Alcance funcional de Fase 1
+
+### Bloque 1 — Arranque y diseño operativo
+
+- Workshop de arranque operativo de 3 horas.
+- Checklist previo para EPI10.
+- Mapa operativo de Fase 1.
+- Estados, responsables y puntos de automatización.
+
+### Bloque 2 — Portal cliente
+
+- Healthie como portal de Fase 1, pendiente de validación final antes de configuración definitiva.
+- Perfil cliente.
+- Onboarding.
+- Formularios.
+- Consentimientos.
+- Cuestionarios.
+- Documentos y analíticas.
+- Entrega de informe final.
+- Comunicación y seguimiento según capacidades de la herramienta.
+
+### Bloque 3 — Backoffice Odoo
+
+- Contactos.
+- Casos/servicios.
+- Estados.
+- Tareas.
+- Responsables.
+- Fechas clave.
+- Dashboard operativo básico.
+- Seguimiento.
+
+### Bloque 4 — EPI10 Salud MVP 1.0
+
+- Capa software propia.
+- Despliegue en AWS España.
+- Integración web/pago.
+- Integración Healthie.
+- Integración Odoo.
+- Motor de estados.
+- Motor de tareas.
+- Trazabilidad.
+- PostgreSQL técnico mínimo.
+
+### Bloque 5 — EPI10 Informe Final Copilot
+
+- Checklist de inputs.
+- Script anonimizador/pseudonimizador.
+- Prompts, skills y scripts cuando proceda.
+- Borrador interno.
+- Revisión humana obligatoria.
+- Exportación y entrega por el canal definido.
+- Actualización de estado.
+- Formación al equipo.
+
+### Bloque 6 — Documentación, formación y soporte
+
+- Documentación técnica.
+- Documentación operativa.
+- Formación inicial.
+- Soporte incluido durante 6 meses desde la entrega formal.
+
+## 5. Arquitectura funcional
+
+La arquitectura funcional de Fase 1 puede entenderse así:
 
 ```text
 Cliente final
@@ -73,55 +156,49 @@ cuestionarios                responsables
 analíticas/documentos        dashboard operativo
 informe final                seguimiento
 
-Y aparte:
-
 EPI10 Informe Final Copilot
    ↓
 inputs anonimizados/pseudonimizados
    ↓
-borrador asistido
+borrador interno
    ↓
 revisión humana obligatoria
    ↓
 informe final validado
    ↓
-entrega en Healthie
+entrega por canal definido
    ↓
 estado actualizado en Odoo
 ```
 
-La web capta y cobra. Healthie centraliza la relación con el cliente. Odoo ordena la operación interna. EPI10 Salud MVP 1.0 orquesta eventos, estados, tareas y trazabilidad. El Copilot asiste la producción del informe.
+La web capta y cobra. Healthie centraliza la relación con el cliente. Odoo ordena la operación interna. EPI10 Salud MVP 1.0 orquesta eventos, estados, tareas y trazabilidad. El Copilot ayuda a producir el informe final manteniendo control humano sobre la versión final.
 
-TellmeGen no se integra automáticamente en Fase 1 porque el proveedor no dispone de API operativa actual. El equipo EPI10 seguirá usando TellmeGen como sistema externo y sus resultados como input del proceso, pero no se venderá como integración automática hasta que exista una API real, documentada y viable.
+## 6. EPI10 Salud MVP 1.0 como activo software propio
 
-## 4. EPI10 Salud MVP 1.0
+Este bloque es la diferencia entre una automatización suelta y una base software acumulativa.
 
-EPI10 Salud MVP 1.0 es el entregable tecnológico central del proyecto.
+EPI10 Salud MVP 1.0 no sustituye Healthie ni Odoo en Fase 1. Se apoya en esas herramientas para acelerar el lanzamiento, pero concentra en software propio la lógica que da valor diferencial y permite evolucionar el sistema.
 
-Consiste en una primera capa de orquestación con lógica de negocio propia, desarrollada específicamente para EPI10. Su función es coordinar eventos y estados críticos entre web/pago, Healthie y Odoo, manteniendo trazabilidad sin convertirse en una plataforma sanitaria completa.
+| Componente | Función | Valor para EPI10 |
+| --- | --- | --- |
+| Backend TypeScript / NestJS | Ejecutar la lógica de negocio propia. | Base técnica mantenible y ampliable. |
+| PostgreSQL técnico | Guardar IDs, estados, trazabilidad e idempotencia. | Control operativo sin duplicar datos sensibles. |
+| AWS España | Alojar la capa propia en infraestructura cloud. | Despliegue controlado y base cloud ampliable. |
+| Endpoints web/pago | Recibir eventos de alta o pago. | Menos alta manual y menos pérdida de información. |
+| Healthie API/Webhooks | Coordinar portal cliente y eventos relevantes. | Mejor continuidad entre cliente y operación. |
+| Odoo API | Actualizar contactos, casos, tareas y estados. | Backoffice operativo con visibilidad real. |
+| Motor de estados | Controlar avance de cada caso. | Menos dependencia de memoria humana. |
+| Motor de tareas | Crear avisos y tareas internas. | Operación más ordenada. |
+| Trazabilidad | Registrar eventos técnicos relevantes. | Mejor control y diagnóstico de incidencias. |
+| Control de errores | Gestionar reintentos e incidencias. | Menos fallos silenciosos. |
+| Mapeo de IDs | Relacionar web, Healthie, Odoo y caso interno. | Menos duplicidad y más consistencia. |
+| Módulo de informe final | Facilitar entrega y registro del informe. | Mejor cierre de la experiencia cliente. |
 
-Componentes previstos:
+El objetivo es que EPI10 empiece a acumular tecnología propia desde la primera fase, sin esperar a una inversión grande ni limitarse a parches inconexos.
 
-| Componente | Función |
-| --- | --- |
-| Backend propio | Servicio TypeScript / NestJS para ejecutar la lógica de negocio. |
-| Base técnica | PostgreSQL técnico mínimo para IDs, estados, trazabilidad e idempotencia. |
-| AWS España | Infraestructura de despliegue de la capa propia. |
-| Endpoints web/pago | Recepción de eventos como lead creado o pago confirmado. |
-| Healthie API/Webhooks | Alta/invitación de cliente, eventos de onboarding, documentos e informe si el plan lo permite. |
-| Odoo API | Contactos, casos, estados, tareas, responsables y dashboard operativo. |
-| Motor de estados | Seguimiento del avance operativo de cada cliente. |
-| Motor de tareas | Creación de tareas y avisos para Aitor/equipo. |
-| Trazabilidad | Registro técnico minimizado de eventos, errores y sincronizaciones. |
-| Control de errores | Reintentos, idempotencia y detección de incidencias. |
-| Mapeo de IDs | Relación entre IDs de web/pago, Healthie, Odoo y caso interno. |
-| Módulo de informe final | Subida o registro del informe final si Healthie API lo permite. |
+## 7. Healthie como portal cliente de Fase 1
 
-Este bloque deja a EPI10 con una base propia. No sustituye Healthie ni Odoo en Fase 1. Se apoya en esas herramientas para acelerar el lanzamiento, pero concentra en software propio la lógica que da valor diferencial y permite evolucionar el sistema.
-
-## 5. Healthie como portal cliente
-
-Healthie se plantea como hipótesis principal de portal cliente porque cubre un conjunto de necesidades cercanas al servicio EPI10:
+Healthie se plantea como portal cliente de Fase 1. Permite acelerar el lanzamiento sin construir un portal propio desde cero y cubre necesidades clave del servicio:
 
 - perfil cliente;
 - onboarding;
@@ -129,105 +206,94 @@ Healthie se plantea como hipótesis principal de portal cliente porque cubre un 
 - consentimientos;
 - cuestionarios;
 - subida de analíticas y documentos;
-- comunicación segura;
+- comunicación;
 - entrega de informes;
 - seguimiento.
 
-EPI10 ya dispone, está valorando o puede contratar Healthie como herramienta principal. Como referencia pública inicial, **Healthie Group aparece desde 149,99 USD/mes**. El coste real dependerá del plan, usuarios, API/add-ons y condiciones contratadas. La API/add-on debe validarse antes de cerrar la contratación.
+Antes de la configuración definitiva se validarán plan, API/add-ons, DPA/GDPR, idioma y condiciones contratadas.
 
-Healthie no queda cerrado al 100% hasta validar plan, coste, idioma, API/webhooks, DPA/GDPR, residencia de datos, límites funcionales y condiciones de uso.
+Como referencia pública inicial, Healthie Group aparece desde **149,99 USD/mes**. El coste real dependerá del plan, usuarios, API/add-ons y condiciones contratadas.
 
-ContinuousCare o una herramienta equivalente quedaría como alternativa si Healthie no encaja por coste, API, DPA, residencia, idioma o requisitos funcionales.
+En fases futuras, EPI10 podrá valorar si le conviene mantener Healthie como portal principal o evolucionar hacia capacidades propias que podamos desarrollar juntos aprovechando la base de EPI10 Salud MVP 1.0 que ya está diseñada para escalar y servir de base futura para un software tipo Gemelo Digital integral.
 
-## 6. Odoo como backoffice operativo
+## 8. Odoo como backoffice operativo
 
-Odoo actuará como backoffice operativo de EPI10, no como portal cliente ni como repositorio clínico/genético.
+Odoo ordena la operación interna. No es el portal cliente y no debe funcionar como repositorio clínico/genético.
 
-Su papel en Fase 1 será ordenar internamente:
+Su papel es ayudar al equipo a ver qué está pasando y qué toca hacer:
 
 - contactos y clientes;
-- casos o servicios EPI10;
+- casos o servicios;
 - estados;
 - tareas;
 - responsables;
 - fechas clave;
-- dashboard operativo básico;
 - seguimiento;
-- facturación o pedidos si aplica.
+- dashboard operativo básico.
 
-Odoo debe recibir estados, tareas, referencias y trazabilidad operativa. No debe convertirse en repositorio de datos genéticos crudos.
+Odoo debe convertirse en el centro de control operativo de Fase 1: una vista clara de cada caso, sus próximos pasos y sus responsables.
 
-La integración se plantea vía API y configuración de modelos, campos y vistas. No se propone de entrada un módulo custom de Odoo salvo que durante la ejecución se demuestre necesario.
+No se estima licencia adicional de Odoo en esta propuesta; cualquier coste dependerá de la modalidad actual, hosting, usuarios o soporte que EPI10 ya tenga contratado o decida mantener. Con las licencias actuales de Odoo no se requiere inversión adicional.
 
-No se estima licencia adicional de Odoo en esta propuesta; cualquier coste dependerá de la modalidad actual, hosting, usuarios o soporte que EPI10 ya tenga contratado o decida mantener.
+## 9. EPI10 Informe Final Copilot
 
-## 7. EPI10 Informe Final Copilot
+El informe final es una de las piezas más sensibles y diferenciales de la experiencia EPI10 Salud y una de las que más tiempo consume al equipo. Por eso Fase 1 no debe limitarse a entregar un PDF por un canal más cómodo: debe empezar a ordenar la producción interna del informe como una capacidad propia.
 
-El informe final es una de las piezas centrales del modelo de negocio de EPI10. Por eso Fase 1 no debe limitarse a entregar el informe por un canal más cómodo: debe empezar a convertir su producción en un sistema asistido, trazable y propio.
+**EPI10 Informe Final Copilot** será una herramienta interna de apoyo para preparar borradores del informe final de EPI10 a partir de inputs estructurados, con anonimización/pseudonimización y revisión humana obligatoria.
 
-**EPI10 Informe Final Copilot** será un sistema asistido para preparar borradores internos del informe final EPI10, usando inputs anonimizados/pseudonimizados y con **revisión humana obligatoria**.
-
-Debe incluir:
+Incluye:
 
 - checklist de inputs;
-- script propio de anonimización/pseudonimización;
-- prompts, skills, subagentes y scripts;
+- script anonimizador/pseudonimizador;
+- prompts, skills y scripts cuando proceda;
 - generación de borrador preliminar;
 - revisión humana obligatoria;
 - exportación final;
-- subida a Healthie si API lo permite;
+- entrega por el canal definido;
 - actualización de estado en Odoo;
-- formación a Aitor/equipo.
+- formación al equipo.
 
-El Copilot no es diagnóstico automático. No es interpretación genética autónoma. No genera el informe final sin revisión. El output inicial es un borrador interno y la versión final la valida EPI10.
+El Copilot no diagnostica. No interpreta genética de forma autónoma. No sustituye el criterio profesional. Ayuda a ordenar inputs y preparar borradores internos. La versión final siempre la valida EPI10.
 
-El valor estratégico es claro: si EPI10 empieza a sistematizar el informe final desde Fase 1, reduce carga manual ahora y construye una capacidad diferencial a futuro.
+Sistematizar esta pieza desde Fase 1 aporta consistencia, velocidad, trazabilidad y una capacidad diferencial que podrá crecer en el futuro.
 
-## 8. Anonimización y tratamiento de datos sensibles
+## 10. Datos sensibles y criterios de seguridad
 
-El proyecto se diseñará con una lógica de minimización de datos, trazabilidad y control de acceso.
+El proyecto se diseñará con criterios de minimización, pseudonimización, trazabilidad y revisión humana.
 
-Para el Copilot y los procesos asociados se incluirá:
+Principios previstos:
 
-- checklist de anonimización;
-- script propio anonimizador;
-- eliminación de identificadores directos;
+- minimización de datos;
 - pseudonimización por case ID;
-- revisión previa antes de usar inputs en el Copilot;
 - no almacenar datos genéticos crudos en Odoo;
 - no almacenar datos genéticos crudos en PostgreSQL técnico;
 - logs sin datos sensibles;
-- retención mínima de paquetes temporales;
-- revisión legal/DPO si EPI10 lo requiere.
+- control de accesos;
+- revisión previa de inputs usados por el Copilot;
+- revisión humana de la versión final del informe.
 
-La implementación técnica se diseñará orientada a minimización, trazabilidad y control de acceso. La validación legal/GDPR debe realizarla el equipo legal/DPO correspondiente si EPI10 lo considera necesario.
 
-No se promete cumplimiento legal absoluto como resultado automático del desarrollo técnico.
+## 11. Tecnología e infraestructura
 
-## 9. Tecnología e infraestructura
+La tecnología se mantiene visible porque EPI10 no está comprando una configuración superficial, sino una primera base software real.
 
 | Capa | Tecnología / Herramienta |
 | --- | --- |
-| Portal cliente | Healthie como hipótesis principal |
-| Alternativa portal | ContinuousCare o herramienta equivalente si Healthie no encaja |
-| Backoffice | Odoo como backoffice operativo |
+| Portal cliente | Healthie |
+| Backoffice | Odoo |
 | Backend propio | TypeScript / NestJS |
 | Base técnica | PostgreSQL |
 | Infraestructura | AWS España |
 | Integraciones | Healthie API/Webhooks, Odoo API, Web/Pago |
 | Informe final | EPI10 Informe Final Copilot |
 | IA / LLM | Cuentas corporativas/autorizadas de EPI10 o herramientas validadas durante la ejecución |
-| Seguridad | Minimización, control de accesos, logs técnicos, anonimización |
+| Seguridad | Minimización, control de accesos, logs técnicos, anonimización/pseudonimización |
 
 Infraestructura AWS España: se contempla una estimación inicial de **44 USD/mes** para alojar la capa propia de EPI10 Salud MVP 1.0 en una configuración ligera de Fase 1. Este coste será asumido directamente por EPI10 y podrá ajustarse si durante la ejecución se requieren más recursos, backups, retención de logs, disponibilidad o servicios adicionales. La configuración final se validará antes del despliegue.
 
-AWS España no está incluido dentro del precio de implantación.
+## 12. Equipo responsable
 
-Healthie, AWS y posibles costes de proveedores externos deben quedar separados del precio de implantación.
-
-## 10. Sobre el equipo responsable del desarrollo
-
-El proyecto será liderado por un equipo compacto, senior y orientado a producto, software, cloud, integraciones e IA aplicada.
+Este proyecto no será ejecutado por un equipo junior ni por una cadena pesada de consultoría. Será liderado por un equipo compacto y senior, con experiencia directa en software, cloud, APIs, productos propios e inteligencia artificial aplicada.
 
 | Rol | Nombre | Responsabilidad principal |
 | --- | --- | --- |
@@ -257,83 +323,7 @@ Formación relevante:
 - Deep Learning, EOI.
 - Data Science, GA.
 
-La combinación de experiencia en arquitectura cloud, APIs, productos propios e inteligencia artificial encaja especialmente bien con la naturaleza de EPI10 Salud MVP 1.0: un primer activo tecnológico propio, operativo y ampliable.
-
-## 11. Qué incluye este proyecto
-
-### Bloque 1 — Arranque y diseño operativo
-
-- Workshop de arranque operativo de 3 horas.
-- Checklist previo para EPI10.
-- Mapa operativo de Fase 1.
-- Estados, responsables y puntos de automatización.
-
-### Bloque 2 — Portal cliente
-
-- Validación de Healthie como hipótesis principal.
-- Configuración inicial de Healthie si se valida.
-- Formularios, consentimientos y cuestionarios.
-- Documentos y analíticas.
-- Entrega de informe final.
-- Comunicación y seguimiento según capacidades de la herramienta.
-
-### Bloque 3 — Backoffice Odoo
-
-- Configuración de Odoo como backoffice operativo.
-- Contactos, casos y servicios.
-- Estados.
-- Tareas.
-- Responsables.
-- Dashboard operativo básico.
-
-### Bloque 4 — EPI10 Salud MVP 1.0
-
-- Desarrollo de capa software propia.
-- Despliegue en AWS España.
-- Integración web/pago.
-- Integración Healthie API/webhooks.
-- Integración Odoo API.
-- Motor de estados y tareas.
-- Trazabilidad técnica.
-- PostgreSQL técnico mínimo.
-
-### Bloque 5 — EPI10 Informe Final Copilot
-
-- Checklist de inputs.
-- Script anonimizador.
-- Prompts, skills, subagentes y scripts.
-- Borrador asistido.
-- Revisión humana obligatoria.
-- Exportación/subida a Healthie si API lo permite.
-- Actualización de estado en Odoo.
-
-### Bloque 6 — Documentación, formación y soporte
-
-- Documentación técnica.
-- Documentación operativa.
-- Formación inicial.
-- Soporte incluido durante 6 meses desde la entrega formal.
-
-## 12. Qué no incluye esta fase
-
-No incluye en Fase 1:
-
-- integración automática TellmeGen;
-- creación automática de usuarios, tests o barcodes en TellmeGen;
-- consulta automática de estado o resultados TellmeGen;
-- descarga automática de PDF TellmeGen;
-- ingesta estructurada de resultados genéticos;
-- dashboard genética;
-- interpretación genética automática;
-- diagnóstico automatizado;
-- gemelo digital;
-- plataforma sanitaria propia completa;
-- app móvil propia si Healthie/equivalente cubre portal/app;
-- garantía legal/GDPR absoluta;
-- nuevas funcionalidades fuera del alcance;
-- mantenimiento posterior al periodo incluido, salvo nuevo acuerdo.
-
-TellmeGen queda fuera no por una decisión arbitraria de diseño, sino porque el proveedor no dispone actualmente de una API operativa disponible para esta integración. Si TellmeGen habilita una API real, documentada y viable, la integración podrá plantearse como Fase 2.
+Para EPI10, esta combinación es importante porque el MVP no debe nacer como una automatización improvisada, sino como una primera base software que pueda crecer.
 
 ## 13. Plan de trabajo
 
@@ -341,37 +331,42 @@ El proyecto se plantea con un plazo estimado de **8 semanas desde kick-off y acc
 
 | Hito | Semana | Descripción | Entregable / criterio de aceptación |
 | --- | --- | --- | --- |
-| M0 | Semana 1 | Kick-off y workshop operativo | Sesión 3h, checklist revisado, estados iniciales cerrados |
-| M1 | Semana 1-2 | Validación Healthie/Odoo/Web | Decisiones de herramienta, accesos, APIs y restricciones |
-| M2 | Semana 2-3 | Configuración portal y backoffice | Healthie/Odoo preparados para flujo base |
+| M0 | Semana 1 | Kick-off y workshop operativo | Sesión de arranque, checklist revisado y estados iniciales cerrados |
+| M1 | Semana 1-2 | Validación herramientas/accesos | Accesos, restricciones y decisiones iniciales confirmadas |
+| M2 | Semana 2-3 | Configuración portal/backoffice | Healthie y Odoo preparados para el flujo base |
 | M3 | Semana 3-5 | Desarrollo EPI10 Salud MVP 1.0 | Backend propio, AWS España, eventos y sincronizaciones base |
-| M4 | Semana 5-6 | EPI10 Informe Final Copilot | Checklist, script anonimizador, flujo de borrador y revisión |
-| M5 | Semana 6-7 | Integración, QA y pruebas | Flujo end-to-end validado con casos de prueba |
-| M6 | Semana 7-8 | Formación y salida controlada | Equipo formado, documentación entregada, soporte activado |
+| M4 | Semana 5-6 | EPI10 Informe Final Copilot | Checklist, script anonimizador, borrador interno y revisión humana |
+| M5 | Semana 6-7 | Integración, QA y pruebas | Flujo validado con casos de prueba |
+| M6 | Semana 7-8 | Formación y salida controlada | Equipo formado, documentación entregada y soporte activado |
 
-Esta tabla presenta hitos comerciales y criterios de aceptación de alto nivel para que EPI10 entienda el recorrido del proyecto.
+Los hitos podrán ajustarse ligeramente según disponibilidad de accesos, validación de herramientas y tiempos de respuesta de proveedores.
 
-## 14. Precio y condiciones
+## 14. Inversión y condiciones
+
+El precio estándar del proyecto es **5.500 € + IGIC no incluido**.
+
+Como condición especial de lanzamiento y primer caso estratégico, se plantea una inversión de **4.700 € + IGIC no incluido** para aprobaciones formalizadas antes del **30 de junio de 2026**.
 
 | Concepto | Detalle | Importe |
 | --- | --- | ---: |
-| Desarrollo e implantación EPI10 Salud MVP 1.0 | Software propio, configuración, integraciones, Copilot, documentación y formación | **4.700 €** |
+| Precio estándar | Desarrollo e implantación EPI10 Salud MVP 1.0 | **5.500 €** |
+| Oferta especial de lanzamiento | Aprobación antes del 30/06/2026 | **4.700 €** |
 | IGIC | No incluido | — |
-| Total sin IGIC |  | **4.700 €** |
+| Total oferta sin IGIC |  | **4.700 €** |
 
-El precio del proyecto es **4.700 € + IGIC no incluido**.
+El siguiente desglose es orientativo y tiene como objetivo dar transparencia sobre la dedicación prevista por bloque. El proyecto se plantea como alcance cerrado para Fase 1, no como una bolsa abierta de horas.
 
-### Desglose orientativo del esfuerzo
-
-| Bloque | Descripción | Dedicación estimada | Importe |
+| Bloque | Descripción | Dedicación estimada | Importe estándar |
 | --- | --- | ---: | ---: |
 | B1. Configuración Healthie / Odoo | Configuración inicial de portal cliente y backoffice, estados base, vistas y preparación operativa. | 6 h | 300 € |
-| B2. EPI10 Salud MVP 1.0 | Desarrollo de la capa software propia, APIs, eventos web/pago, Healthie, Odoo, estados, tareas, trazabilidad y PostgreSQL técnico. | 34 h | 1.700 € |
+| B2. EPI10 Salud MVP 1.0 | Desarrollo de la capa software propia, APIs, eventos web/pago, Healthie, Odoo, estados, tareas, trazabilidad y PostgreSQL técnico. | 50 h | 2.500 € |
 | B3. EPI10 Informe Final Copilot | Checklist, script anonimizador, prompts/skills, borrador asistido, flujo de revisión humana y preparación de entrega. | 24 h | 1.200 € |
 | B4. Integración, QA y pruebas | Pruebas end-to-end, validación de eventos, subida/entrega del informe, manejo de errores y ajustes finales. | 12 h | 600 € |
 | B5. Documentación, formación y activación de soporte | Documentación técnica, documentación operativa, formación inicial y activación del soporte incluido. | 8 h | 400 € |
 | B6. Preparación infraestructura AWS | Configuración inicial de AWS España, entorno de despliegue, secretos/configuración, logs, backups básicos y base cloud ampliable. | 10 h | 500 € |
-|  | **Total** | **94 h** | **4.700 €** |
+|  | **Total estándar** | **110 h** | **5.500 €** |
+
+La oferta especial de lanzamiento reduce la inversión de Fase 1 a **4.700 € + IGIC no incluido** para aprobaciones formalizadas antes del **30 de junio de 2026**, manteniendo el alcance descrito.
 
 ## 15. Costes externos previstos
 
@@ -379,15 +374,13 @@ Los siguientes costes externos no están incluidos en el precio de implantación
 
 | Coste externo | Tratamiento |
 | --- | --- |
-| Healthie licencia | Healthie se plantea como hipótesis principal de portal cliente. Como referencia pública inicial, Healthie Group aparece desde 149,99 USD/mes. |
-| Healthie API/add-on | Necesario si Healthie se confirma para el alcance previsto. Coste pendiente de validación del plan y cotización. |
-| Healthie usuarios/add-ons | Pendiente de plan real, número de usuarios y condiciones contratadas. |
+| Healthie licencia | Healthie se plantea como portal cliente de Fase 1. Como referencia pública inicial, Healthie Group aparece desde 149,99 USD/mes. |
+| Healthie API/add-on | Se validará según plan contratado y alcance definitivo de integración. |
+| Healthie usuarios/add-ons | Dependerá del plan real, número de usuarios y condiciones contratadas. |
 | Odoo | No se estima licencia adicional de Odoo en esta propuesta; cualquier coste dependerá de la modalidad actual, hosting, usuarios o soporte que EPI10 ya tenga contratado o decida mantener. |
 | AWS España | Estimación inicial de 44 USD/mes para una configuración ligera de Fase 1. |
 | LLM/API Copilot | No se presupuesta un coste LLM/API propio para esta fase. |
 | Legal/DPO | Si EPI10 requiere revisión especializada. |
-
-Infraestructura AWS España: se contempla una estimación inicial de **44 USD/mes** para alojar la capa propia de EPI10 Salud MVP 1.0 en una configuración ligera de Fase 1. Este coste será asumido directamente por EPI10 y podrá ajustarse si durante la ejecución se requieren más recursos, backups, retención de logs, disponibilidad o servicios adicionales. La configuración final se validará antes del despliegue.
 
 No se presupuesta un coste LLM/API propio para esta fase. El uso del EPI10 Informe Final Copilot se apoyará en las cuentas corporativas/autorizadas de EPI10 o en las herramientas que se validen durante la ejecución. Si más adelante se decide usar una API LLM dedicada, su coste se presupuestará aparte.
 
@@ -402,30 +395,46 @@ Los importes anteriores no incluyen IGIC.
 
 ## 17. Soporte incluido
 
-Soporte incluido durante **6 meses desde la entrega formal**.
+El proyecto incluye **6 meses de soporte desde la entrega formal**, orientado a estabilizar el uso inicial del sistema y resolver incidencias, ajustes menores y dudas razonables sobre el alcance entregado.
 
-Este soporte cubre:
+Incluye:
 
 - incidencias sobre el alcance entregado;
+- ajustes menores relacionados con el uso inicial;
 - soporte sobre EPI10 Salud MVP 1.0;
 - soporte sobre EPI10 Informe Final Copilot;
-- soporte de despliegue AWS;
+- soporte de despliegue y mantenimiento en AWS;
 - soporte de integraciones Healthie/Odoo/Web;
-- acompañamiento inicial;
-- formación y dudas operativas.
+- acompañamiento inicial y dudas operativas razonables.
 
 No incluye:
 
 - nuevas funcionalidades;
-- integración TellmeGen;
-- rediseño completo;
+- rediseños;
+- nuevas integraciones;
+- soporte 24/7;
+- cambios regulatorios;
+- mantenimiento evolutivo continuado;
+- desarrollos fuera de alcance.
+
+Finalizado el periodo incluido, se podrá valorar un acuerdo de mantenimiento anual posterior o evolución si EPI10 lo considera necesario.
+
+## 18. Qué no incluye esta fase
+
+No incluye en Fase 1:
+
+- integración automática con TellmeGen en Fase 1 por no disponer de API el proveedor;
+- interpretación genética automática;
+- diagnóstico automatizado;
+- gemelo digital;
+- portal sanitario propio completo desde cero;
+- app móvil propia si Healthie o una herramienta equivalente cubre portal/app;
+- nuevas funcionalidades fuera del alcance;
 - cambios legales/regulatorios;
-- soporte 24/7 salvo pacto expreso;
-- mantenimiento posterior al periodo incluido.
+- mantenimiento posterior al periodo incluido salvo nuevo acuerdo;
+- garantía legal/GDPR absoluta sin revisión legal/DPO específica.
 
-El mantenimiento posterior se valorará al final del periodo incluido si procede.
-
-## 18. Propiedad del código y documentación
+## 19. Propiedad del código y documentación
 
 Todo el código desarrollado específicamente para EPI10 Salud se entregará a EPI10 y pasará a formar parte de sus activos tecnológicos.
 
@@ -433,17 +442,23 @@ Esto incluye:
 
 - código EPI10 Salud MVP 1.0;
 - EPI10 Informe Final Copilot;
-- script anonimizador;
+- algoritmo anonimizador/pseudonimizador;
 - integraciones propias;
 - documentación técnica;
 - documentación operativa;
 - documentación suficiente para que cualquier equipo autorizado por EPI10 pueda trabajar sobre el sistema.
 
-Esta cesión se refiere al software específico desarrollado para EPI10. Librerías open source, frameworks, servicios de terceros y herramientas preexistentes mantienen sus propias licencias y condiciones.
+La cesión del código específico se realizará una vez abonado el importe completo del proyecto. Skilland/Reboot conserva la propiedad de metodologías, know-how, plantillas, componentes genéricos, prompts reutilizables y aceleradores preexistentes, salvo los elementos desarrollados específicamente para EPI10.
 
-## 19. Roadmap
+Librerías open source, frameworks, servicios de terceros y herramientas preexistentes mantienen sus propias licencias y condiciones.
 
-### Fase 1 — EPI10 Salud MVP 1.0
+## 20. Roadmap: empezar pequeño sin construir en falso
+
+Fase 1 no intenta resolver toda la visión futura de EPI10 Salud. Su objetivo es poner en marcha una primera base operativa y tecnológica que permita lanzar cuanto antes, aprender con clientes reales y seguir construyendo de forma acumulativa.
+
+La clave es evitar dos extremos: ni una plataforma demasiado grande y lenta para el momento actual, ni una automatización puntual que no sirva como base futura.
+
+### Fase 1 — MVP operativo
 
 - Portal cliente.
 - Odoo backoffice.
@@ -452,9 +467,9 @@ Esta cesión se refiere al software específico desarrollado para EPI10. Librer�
 - EPI10 Informe Final Copilot.
 - Soporte inicial.
 
-### Fase 2 — Automatización y ampliación
+### Fase 2 — Automatización y control
 
-- Integración TellmeGen si habilita API real, documentada y viable.
+- Integración con TellmeGen cuando el proveedor habilite una API real, documentada y viable para partners.
 - Mejora del Copilot.
 - Automatización documental avanzada.
 - Reporting operativo avanzado.
@@ -463,9 +478,9 @@ Esta cesión se refiere al software específico desarrollado para EPI10. Librer�
 
 ### Fase 3 — Capacidades propias / gemelo digital
 
-- Evolución del portal cliente propio.
-- Posible reducción progresiva de dependencia de Healthie.
-- Posible reducción progresiva de dependencia de Odoo.
+- Portal cliente propio.
+- Reducción progresiva de dependencia de Healthie.
+- Reducción progresiva de dependencia de Odoo.
 - Research médico asistido.
 - Integración de papers/evidencia científica.
 - Módulos propios de análisis.
@@ -473,20 +488,21 @@ Esta cesión se refiere al software específico desarrollado para EPI10. Librer�
 
 Fase 3 es visión futura. No está incluida en Fase 1.
 
-## 20. ROI y valor operativo
+## 21. ROI y valor operativo
 
-El valor de EPI10 Salud MVP 1.0 no depende solo de ahorrar horas. También depende de reducir fricción, errores, dispersión documental y dependencia de procesos manuales.
+El valor no está solo en las horas ahorradas. Está también en reducir fricción, evitar retrasos, mejorar la experiencia percibida por el cliente y construir una base que permita escalar sin rehacer el sistema cada vez que EPI10 crezca.
 
 Valor esperado:
 
-- reducción de manualidad de Aitor/equipo;
-- menor doble entrada;
+- menos manualidad;
+- menos doble entrada;
 - menos errores operativos;
+- menos dependencia de personas concretas;
+- mejor experiencia cliente;
 - mejor trazabilidad;
-- entrega más profesional del informe;
-- menor dependencia de email;
-- base escalable;
-- capacidad de atender más clientes sin aumentar linealmente la carga operativa.
+- más control de operación;
+- capacidad de atender más clientes sin aumentar la carga de forma lineal;
+- valor acumulativo del activo software propio.
 
 La fórmula de estimación puede ser:
 
@@ -494,28 +510,24 @@ La fórmula de estimación puede ser:
 horas ahorradas al mes = horas ahorradas por cliente x clientes al mes
 ```
 
-Si el equipo ahorra `X` horas por cliente y procesa `Y` clientes al mes, el ahorro mensual estimado sería `X x Y` horas. Esta cifra se podrá concretar al inicio de Fase 1 cuando EPI10 comparta volumen y tiempos actuales.
+Si el equipo ahorra `X` horas por cliente y procesa `Y` clientes al mes, el ahorro mensual estimado sería `X x Y` horas. Esta cifra podrá concretarse cuando EPI10 disponga de volumen y tiempos actuales suficientemente claros.
 
-Tomás puede usar esta sección para valorar coste, ROI y capacidad de escalar, pero el diseño funcional sigue priorizando a Carmen como buyer principal y a Aitor/equipo como fuente del dolor operativo.
+## 22. Supuestos y dependencias
 
-## 21. Supuestos y dependencias
+Para ejecutar correctamente el proyecto se necesitará:
 
-Esta propuesta asume:
+- disponibilidad de accesos;
+- acceso/configuración suficiente de Odoo para los modelos, campos, vistas e integraciones de Fase 1;
+- contratación y pago directo por parte de EPI10 de proveedores externos no incluidos en el precio de implantación;
 
-- Healthie pendiente de validación final de plan, coste, API, DPA, residencia e idioma.
-- Odoo pendiente de revisar modalidad, API y configuración real.
-- Web/pago pendiente de confirmar eventos o mecanismo de integración.
-- AWS a contratar/pagar por EPI10.
-- API Healthie/add-on pendiente de cotización.
-- Legal/DPO si EPI10 lo requiere.
-- TellmeGen sin API actual, fuera de Fase 1.
+Estos puntos no bloquean la propuesta, pero deben cerrarse durante el arranque para ejecutar la Fase 1 con claridad.
 
-Estos puntos no bloquean la propuesta, pero deben quedar visibles para no convertir incógnitas en promesas.
+## 23. Cierre comercial
 
-## 22. Cierre comercial
+Recomendamos avanzar con **EPI10 Salud MVP 1.0** porque es la forma más equilibrada de crecer sin construir en falso: una primera base software propia, apoyada en herramientas existentes, con control operativo, mejor experiencia cliente y capacidad de evolución.
 
-Con **EPI10 Salud MVP 1.0**, EPI10 no solo implanta herramientas existentes: empieza a construir su primera base software propia para operar, escalar y evolucionar el servicio.
+La Fase 1 permite pasar de una operación dispersa a un flujo más ordenado, con portal cliente, backoffice, trazabilidad, producción del informe final y soporte inicial, sin sobredimensionar el proyecto ni retrasar el lanzamiento por intentar construir toda la visión futura desde el primer día.
 
-La Fase 1 permite salir al mercado con una operación más ordenada, un portal cliente profesional, un backoffice trazable y un proceso asistido de producción del informe final, sin sobredimensionar el proyecto ni depender de integraciones genéticas que hoy el proveedor no ofrece.
+El siguiente paso sería aprobar la propuesta antes del **30 de junio de 2026**, formalizar el primer pago y agendar el kick-off operativo para cerrar accesos, estados y flujo inicial.
 
-El objetivo es pragmático: lanzar antes, operar mejor y construir desde el principio un activo tecnológico propio que pueda crecer con EPI10.
+A partir de ese momento, el plazo estimado de ejecución será de **8 semanas desde kick-off y accesos confirmados**.
