@@ -6,7 +6,9 @@
 
 Documento confidencial · Uso exclusivo de EPI10 Salud
 
-EPI10 Salud MVP 1.0 es una propuesta pragmática para lanzar una nueva línea de negocio sin construir una plataforma sanitaria completa desde el primer día, pero evitando también caer en automatizaciones sueltas que resuelven algo hoy y mañana hay que rehacer porque no conforman una base sólida sobre la que crecer.
+EPI10 Salud MVP 1.0 es una propuesta pragmática para lanzar una nueva línea de negocio sin construir una plataforma sanitaria completa desde el primer día, pero evitando también caer en automatizaciones sueltas que resuelven algo hoy y mañana hay que rehacer porque no conforman una base sólida sobre la que crecer. 
+
+No es una conexión puntual entre herramientas. No es un apaño entre formularios y Odoo. No es una automatización de usar y tirar.
 
 La propuesta combina herramientas existentes, como Healthie y Odoo, con una primera capa software propia desplegada en AWS España. El objetivo es ordenar y automatizar las operaciones manuales, cuidar la experiencia de cliente y dejar a EPI10 Salud una base acumulativa sobre la que poder seguir construyendo.
 
