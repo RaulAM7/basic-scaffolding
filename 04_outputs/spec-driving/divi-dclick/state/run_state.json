@@ -1,43 +1,45 @@
 {
-  "case_id": "divi-dclick",
-  "run_id": "divi-dclick-20260614",
-  "mode": "standard",
-  "run_status": "IN_PROGRESS",
-  "active_stage": "03",
-  "stage_statuses": {
-    "00": "PASSED",
-    "01": "PASSED",
-    "02": "PASSED",
-    "03": "READY",
-    "04": "PENDING",
-    "06": "PENDING"
-  },
-  "artifact_paths": {
-    "00": "context/00_intake_context_pack.md",
-    "01": "artifacts/01_problem_audit_v1.md",
-    "02": "artifacts/02_mvp_scope_decision_v1.md",
-    "03": "artifacts/03_technical_presales_blueprint_v1.md",
-    "04": "artifacts/04_commercial_proposal_v1.md",
-    "06": "artifacts/06_execution_plan_v1.md"
-  },
-  "review_paths": {
-    "00": "reviews/stage_00_review_iter_01.md",
-    "01": "reviews/stage_01_review_iter_01.md",
-    "02": "reviews/stage_02_review_iter_02.md"
-  },
-  "iteration_counts": {
-    "00": 1,
-    "01": 1,
-    "02": 2,
-    "03": 0,
-    "04": 0,
-    "06": 0
-  },
-  "max_iterations": null,
-  "blocked_questions": [],
-  "assumptions": [],
-  "overrides": [],
-  "last_action": "Stage 02 hardening iteration passed review.",
-  "next_action": "Run Stage 03 technical presales blueprint only when explicitly requested; do not execute automatically.",
-  "updated_at": "2026-06-14"
+    "case_id": "divi-dclick",
+    "run_id": "divi-dclick-20260614",
+    "mode": "standard",
+    "run_status": "PRE_SALES_COMPLETE",
+    "active_stage": null,
+    "stage_statuses": {
+        "00": "PASSED",
+        "01": "PASSED",
+        "02": "PASSED",
+        "03": "PASSED",
+        "04": "PASSED",
+        "06": "PENDING"
+    },
+    "artifact_paths": {
+        "00": "context/00_intake_context_pack.md",
+        "01": "artifacts/01_problem_audit_v1.md",
+        "02": "artifacts/02_mvp_scope_decision_v1.md",
+        "03": "artifacts/03_technical_presales_blueprint_v1.md",
+        "04": "artifacts/04_commercial_proposal_v1.md",
+        "06": "artifacts/06_execution_plan_v1.md"
+    },
+    "review_paths": {
+        "00": "reviews/stage_00_review_iter_01.md",
+        "01": "reviews/stage_01_review_iter_01.md",
+        "02": "reviews/stage_02_review_iter_02.md",
+        "03": "reviews/stage_03_review_iter_01.md",
+        "04": "reviews/stage_04_review_iter_02.md"
+    },
+    "iteration_counts": {
+        "00": 1,
+        "01": 1,
+        "02": 2,
+        "03": 1,
+        "04": 2,
+        "06": 0
+    },
+    "max_iterations": null,
+    "blocked_questions": [],
+    "assumptions": [],
+    "overrides": [],
+    "last_action": "Stage 04 commercial proposal micro-iteration 02 passed review.",
+    "next_action": "Pre-sales complete. Review final commercial wording and visual layout; do not run Stage 06 unless execution_plan_enabled is set to true.",
+    "updated_at": "2026-06-14"
 }
