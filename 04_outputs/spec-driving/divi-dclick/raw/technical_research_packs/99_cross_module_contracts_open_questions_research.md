@@ -14,7 +14,8 @@ DClick IA es un sistema de canales, documentos, automatizacion y conocimiento. E
 | --- | --- | --- | --- |
 | Arquitectura modular con workers deterministas | DECISION CTO PROVISIONAL FUERTE | CTO y packs. | Definir eventos y contratos. |
 | Drive fuente humana/canonica | DECISION CTO PROVISIONAL FUERTE | Drive pack. | Mirror/indice derivados. |
-| Hermes runtime central | DECISION CTO PROVISIONAL FUERTE | Hermes pack. | PoC antes de blueprint final. |
+| Hermes runtime central | DECISION ARQUITECTONICA TOMADA | Hermes pack. | Stage 03 debe disenar implementacion y prueba tecnica minima; no reabrir salvo bloqueo grave. |
+| Kapso + Hermes para WhatsApp | DECISION ARQUITECTONICA TOMADA | WhatsApp/Kapso pack. | Via objetivo para WhatsApp; Cloud API directa queda como fallback si Kapso falla. |
 | CRM adapter | DECISION CTO PROVISIONAL FUERTE | CRM pack. | CRM concreto queda abierto. |
 | Seguridad/RGPD transversal | REQUISITO DURO | Security pack. | Ningun modulo se valida sin permisos/logs. |
 
@@ -26,12 +27,12 @@ DClick IA es un sistema de canales, documentos, automatizacion y conocimiento. E
 
 ## 5. Capacidades confirmadas por documentacion
 
-- Las fuentes oficiales/repo confirman que existen piezas tecnicas suficientes para PoCs: Hermes gateway/tools, Google Drive/Gmail APIs, BDNS API, Kapso plugin/Broadcasts, Postgres FTS/pgvector y APIs CRM.
-- Ninguna fuente externa confirma el sistema completo integrado; la integracion DClick IA sigue siendo hipotesis arquitectonica.
+- Las fuentes oficiales/repo confirman que existen piezas tecnicas suficientes para pruebas de integracion: Hermes gateway/tools, Google Drive/Gmail APIs, BDNS API, Kapso plugin/Broadcasts, Postgres FTS/pgvector y APIs CRM.
+- Hermes y Kapso + Hermes no son hipotesis abiertas de direccion: son arquitectura objetivo. Lo pendiente es validar configuracion, seguridad, limites, costes, despliegue y contratos operativos.
 
 ## 6. Capacidades no confirmadas o dudosas
 
-- PENDIENTE DE VALIDACION TECNICA: integracion end-to-end Hermes + Kapso/Gmail + RAG + CRM + Drive.
+- PENDIENTE DE VALIDACION TECNICA: integracion end-to-end de la arquitectura objetivo Hermes + Kapso/Gmail + RAG + CRM + Drive.
 - PENDIENTE DE VALIDACION TECNICA: permisos exactos Google/Kapso/CRM.
 - PENDIENTE DE VALIDACION LEGAL/RGPD: tratamiento de datos, opt-in y proveedores.
 - PENDIENTE DE VALIDACION TECNICA: calidad de respuestas automaticas en dominio subvenciones.
@@ -40,15 +41,15 @@ DClick IA es un sistema de canales, documentos, automatizacion y conocimiento. E
 
 | Area | Opcion preferente | Alternativas | Estatus |
 | --- | --- | --- | --- |
-| Runtime | Hermes + workers | Workers propios, n8n auxiliar | DECISION CTO PROVISIONAL FUERTE |
+| Runtime | Hermes + workers | Workers propios solo como fallback / n8n auxiliar puntual | DECISION ARQUITECTONICA TOMADA |
 | Drive | Shared Drive + mirror API | My Drive gobernado | HIPOTESIS TECNICA A VALIDAR |
 | Knowledge | Postgres FTS + pgvector | FTS solo, Chroma, LanceDB, SQLite | HIPOTESIS TECNICA A VALIDAR |
-| WhatsApp | Kapso + Hermes | Cloud API directa, Baileys | HIPOTESIS TECNICA A VALIDAR |
-| CRM | Adapter + Twenty PoC | Baserow, NocoDB, GoHighLevel | OPCION ABIERTA |
+| WhatsApp | Kapso + Hermes | Cloud API directa como fallback; Baileys descartado para produccion | DECISION ARQUITECTONICA TOMADA |
+| CRM | Adapter + prueba tecnica Twenty | Baserow, NocoDB, GoHighLevel | OPCION ABIERTA |
 
 ## 8. Diseno candidato / hipotesis preferente
 
-Hipotesis preferente global: Hermes interpreta y coordina; workers deterministas ejecutan acciones estructurales; Drive es casa humana; Postgres guarda logs/indice; BDNS alimenta radar; Kapso/Gmail reciben canales; CRM adapter guarda memoria comercial; seguridad/evals gobiernan autonomia.
+Diseno candidato global: Hermes interpreta y coordina como runtime agentic objetivo; workers deterministas ejecutan acciones estructurales; Drive es casa humana; Postgres guarda logs/indice; BDNS alimenta radar; Kapso + Hermes es la via objetivo de WhatsApp; Gmail recibe email; CRM adapter guarda memoria comercial; seguridad/evals gobiernan autonomia.
 
 ## 9. Inputs y outputs probables
 
@@ -79,10 +80,10 @@ Hipotesis preferente global: Hermes interpreta y coordina; workers deterministas
 
 ## 11. Integraciones externas relevantes
 
-- Hermes: core agentic; PoC obligatoria.
+- Hermes: core agentic objetivo; prueba tecnica de integracion obligatoria antes de cerrar compromiso operativo/produccion.
 - Google Drive/Gmail: Workspace; scopes y Pub/Sub; validar con admin.
 - BDNS/SNPSAP: API publica; validar limites y filtros.
-- Kapso/Meta: WhatsApp; validar numero, opt-in, costes y plugin.
+- Kapso/Meta: via objetivo para WhatsApp; validar numero, opt-in, costes, plugin, webhooks y fallback Cloud API directa.
 - CRM elegido: validar UX, API y lock-in.
 - LLM provider: validar datos, coste y seguridad.
 
@@ -112,13 +113,13 @@ Hipotesis preferente global: Hermes interpreta y coordina; workers deterministas
 
 | Riesgo | Impacto | Probabilidad | Mitigacion | Estatus |
 | --- | --- | --- | --- | --- |
-| Integracion end-to-end no estable | Alto | Media | PoCs por modulo + contract tests. | PENDIENTE DE VALIDACION TECNICA |
+| Integracion end-to-end no estable | Alto | Media | Pruebas tecnicas por modulo + contract tests. | PENDIENTE DE VALIDACION TECNICA |
 | Permisos excesivos | Alto | Media | Scopes minimos y toolsets. | REQUISITO DURO |
 | Autonomia sin evals | Alto | Media | Test set y rollout progresivo. | REQUISITO DURO |
 | Vendor lock-in CRM/WhatsApp | Medio | Media | Adapters y export. | DECISION CTO PROVISIONAL FUERTE |
 | RGPD sin resolver | Alto | Media | Revision legal antes de produccion. | PENDIENTE DE VALIDACION LEGAL/RGPD |
 
-## 15. Prueba minima / PoC recomendada
+## 15. Prueba minima / prueba tecnica recomendada
 
 - Fixture: 1 convocatoria BDNS Canarias, 5 docs Drive, 10 contactos CRM, 20 mensajes, 1 campana interna.
 - Pasos: detectar convocatoria, crear Drive, indexar, responder una consulta, registrar CRM, preparar campana, pedir aprobacion.
@@ -129,7 +130,7 @@ Hipotesis preferente global: Hermes interpreta y coordina; workers deterministas
 
 - CTO:
   - ¿Hermes dentro o fuera de Docker?
-  - ¿Kapso o WhatsApp Cloud directa si PoC falla?
+  - ¿Que condiciones hacen activar Cloud API directa como fallback si Kapso falla?
   - ¿Twenty primero o adapter mock?
 - DClick:
   - ¿Workspace/Shared Drives disponibles?
@@ -147,10 +148,10 @@ Hipotesis preferente global: Hermes interpreta y coordina; workers deterministas
 
 ## 17. Recomendacion para Stage 00/01/02/03
 
-- Stage 00: puede ejecutarse ya. Debe mapear cada pack como fuente trazable y separar decisiones duras/provisionales/hipotesis.
+- Stage 00: puede ejecutarse ya. Debe mapear cada pack como fuente trazable y separar decisiones duras, decisiones arquitectonicas tomadas, decisiones provisionales e hipotesis reales.
 - Stage 01: debe auditar si los modulos resuelven dolores reales y si hay riesgo de sobrearquitectura.
-- Stage 02: debe decidir alcance base y dejar fuera/pendiente lo que requiere PoC o decision DClick.
-- Stage 03: debe convertir alcance aprobado en blueprint, incluyendo contratos de tools, permisos, logs, PoCs y decisiones abiertas.
+- Stage 02: debe decidir alcance base y dejar fuera/pendiente lo que requiere prueba tecnica, decision DClick o validacion legal.
+- Stage 03: debe convertir alcance aprobado en blueprint, incluyendo contratos de tools, permisos, logs, pruebas tecnicas y decisiones abiertas.
 
 ## 18. Source Map
 
@@ -164,4 +165,3 @@ Hipotesis preferente global: Hermes interpreta y coordina; workers deterministas
 | SRC-XMOD-006 | `04_bdns_watcher_radar_subvenciones_research.md` | research interno | BDNS radar. | media |
 | SRC-XMOD-007 | `05_knowledge_layer_markdown_rag_index_research.md` | research interno | Knowledge/RAG. | media |
 | SRC-XMOD-008 | `12_security_rgpd_audit_logs_research.md` | research interno | Seguridad/RGPD. | media |
-

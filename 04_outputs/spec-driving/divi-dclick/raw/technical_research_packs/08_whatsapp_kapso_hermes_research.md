@@ -2,7 +2,7 @@
 
 ## 1. Proposito del research pack
 
-Investiga Kapso como via preferente para conectar WhatsApp con Hermes y compara brevemente con WhatsApp Cloud API directa y Baileys/Hermes nativo.
+Investiga Kapso como via objetivo para conectar WhatsApp con Hermes y compara brevemente el fallback Cloud API directa y la referencia Baileys/Hermes nativo no apta para produccion.
 
 ## 2. Resumen tecnico del modulo
 
@@ -12,8 +12,8 @@ WhatsApp es superficie conversacional clave para Vivi/Maria y potencialmente cli
 
 | Decision / hipotesis | Estatus | Evidencia | Implicacion |
 | --- | --- | --- | --- |
-| Kapso + Hermes para WhatsApp | HIPOTESIS TECNICA A VALIDAR | Kapso docs/plugin confirman integracion; requiere PoC. | No prometer sin validar numero/costes/estabilidad. |
-| WhatsApp oficial frente a Baileys | DECISION CTO PROVISIONAL FUERTE | Hermes docs advierten Baileys/WhatsApp Web tiene riesgo de ban; Cloud API oficial es via estable. | Preferir via oficial/productiva. |
+| Kapso + Hermes para WhatsApp | DECISION ARQUITECTONICA TOMADA | Kapso docs/plugin confirman integracion; requiere prueba tecnica de integracion. | Kapso + Hermes es la via objetivo para WhatsApp. Stage 03 debe disenar implementacion, webhooks, numero, seguridad, opt-in, templates, costes y fallback. No tratar como opcion debil. |
+| WhatsApp oficial frente a Baileys | DECISION ARQUITECTONICA TOMADA | Hermes docs advierten Baileys/WhatsApp Web tiene riesgo de ban; Cloud API oficial es via estable. | Baileys/WhatsApp Web queda descartado para produccion. |
 | Numero dedicado | HIPOTESIS TECNICA A VALIDAR | Kapso/Meta requieren numero conectado. | DClick debe decidir numero y WABA. |
 | Broadcasts con aprobacion humana | DECISION CTO PROVISIONAL FUERTE | Kapso Broadcasts + politica interna. | No envio masivo autonomo. |
 
@@ -48,14 +48,16 @@ WhatsApp es superficie conversacional clave para Vivi/Maria y potencialmente cli
 
 | Opcion | Ventaja | Riesgo | Estatus |
 | --- | --- | --- | --- |
-| Kapso + Hermes plugin | Integracion rapida con Hermes y WhatsApp oficial. | Dependencia externa/coste/API drift. | HIPOTESIS TECNICA A VALIDAR |
-| WhatsApp Cloud API directa | Menos intermediarios. | Mas desarrollo propio de webhooks/media/templates. | OPCION ABIERTA |
-| Hermes Baileys | Setup rapido sin Meta Business. | Riesgo ban, no ideal produccion. | NO DECIDIR TODAVIA |
-| GoHighLevel WhatsApp | Suite comercial. | Lock-in y solape con Kapso/Hermes. | OPCION ABIERTA |
+| Kapso + Hermes plugin | Via objetivo; integracion rapida con Hermes y WhatsApp oficial/proxy. | Dependencia externa, coste, API drift, configuracion Meta/Kapso. | DECISION ARQUITECTONICA TOMADA |
+| WhatsApp Cloud API directa | Menos intermediarios. | Mas desarrollo propio de webhooks/media/templates. | FALLBACK SI KAPSO FALLA |
+| Hermes Baileys | Setup rapido sin Meta Business. | Riesgo de ban/no produccion. | DESCARTADO PARA PRODUCCION |
+| GoHighLevel WhatsApp | Suite comercial. | Lock-in y solape con Hermes/Kapso. | OPCION ABIERTA SOLO SI CAMBIA LA DECISION CRM |
 
 ## 8. Diseno candidato / hipotesis preferente
 
-Hipotesis preferente: Kapso como transporte WhatsApp oficial, Hermes como runtime, workers propios para CRM/RAG/escalado y allowlist estricta en canales internos. Para clientes externos, toolset restringido.
+Kapso no se esta investigando para decidir si entra. Se investiga para entender como implementarlo correctamente, que requisitos operativos tiene y que limites/costes debe conocer el proyecto.
+
+Diseno candidato: Kapso como transporte WhatsApp objetivo, Hermes como runtime, workers propios para CRM/RAG/escalado y allowlist estricta en canales internos. Para clientes externos, toolset restringido. Cloud API directa queda como fallback si Kapso falla por coste, estabilidad o limitacion.
 
 ## 9. Inputs y outputs probables
 
@@ -96,12 +98,12 @@ Hipotesis preferente: Kapso como transporte WhatsApp oficial, Hermes como runtim
 
 | Riesgo | Impacto | Probabilidad | Mitigacion | Estatus |
 | --- | --- | --- | --- | --- |
-| Coste/viabilidad Kapso no cuadra | Alto | Media | PoC y decision comercial/tecnica. | PENDIENTE DE VALIDACION TECNICA |
+| Coste/viabilidad Kapso no cuadra | Alto | Media | Prueba tecnica minima de integracion y decision comercial/tecnica. | PENDIENTE DE VALIDACION TECNICA |
 | Numero WhatsApp bloqueado/reputacion baja | Alto | Media | Opt-in, templates, limites, no spam. | PENDIENTE DE VALIDACION TECNICA |
 | Webhook publico inseguro | Alto | Media | Firma, HTTPS, secret, idempotencia. | DECISION CTO PROVISIONAL FUERTE |
 | Drift de plugin/API | Medio | Media | Version pinning y tests. | HIPOTESIS TECNICA A VALIDAR |
 
-## 15. Prueba minima / PoC recomendada
+## 15. Prueba tecnica minima de integracion Kapso + Hermes
 
 - Fixture: numero sandbox/production controlado, 5 contactos internos, mensajes texto/media/audio/PDF.
 - Pasos: instalar plugin, configurar env vars, webhook HTTPS, allowlist, enviar/recibir, log y healthcheck.
@@ -110,7 +112,7 @@ Hipotesis preferente: Kapso como transporte WhatsApp oficial, Hermes como runtim
 
 ## 16. Preguntas abiertas
 
-- CTO: ¿Kapso o Cloud API directa si PoC falla?
+- CTO: ¿que condiciones hacen activar Cloud API directa como fallback si Kapso falla?
 - DClick: ¿numero nuevo o existente?
 - Documentacion tecnica: ¿versiones exactas plugin/Kapso/Hermes?
 - Legal/RGPD: ¿opt-in, bajas, retencion de conversaciones y media?
@@ -118,10 +120,10 @@ Hipotesis preferente: Kapso como transporte WhatsApp oficial, Hermes como runtim
 
 ## 17. Recomendacion para Stage 00/01/02/03
 
-- Stage 00: absorber Kapso como hipotesis, no decision final.
+- Stage 00: absorber Kapso + Hermes como decision arquitectonica tomada para WhatsApp.
 - Stage 01: auditar dolor de WhatsApp/atencion.
-- Stage 02: decidir si WhatsApp entra en alcance base o PoC previa.
-- Stage 03: si entra, especificar proveedor, numero, webhooks, seguridad y limites.
+- Stage 02: decidir alcance operativo de WhatsApp sin reabrir la via objetivo salvo bloqueo grave.
+- Stage 03: especificar proveedor, numero, webhooks, seguridad, limites, costes y fallback Cloud API directa.
 
 ## 18. Source Map
 
@@ -132,4 +134,3 @@ Hipotesis preferente: Kapso como transporte WhatsApp oficial, Hermes como runtim
 | SRC-WA-003 | https://github.com/gokapso/hermes-agent-plugin | repo oficial | Implementacion plugin. | alta |
 | SRC-WA-004 | https://github.com/gokapso/whatsapp-cloud-api-js | repo oficial | Cliente Cloud API/Kapso proxy. | alta |
 | SRC-WA-005 | https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/messaging/whatsapp.md | repo oficial | Baileys vs Cloud API y riesgo. | alta |
-

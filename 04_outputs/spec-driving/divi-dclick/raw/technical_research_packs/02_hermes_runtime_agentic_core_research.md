@@ -12,8 +12,8 @@ Hermes tocaria el dolor de coordinacion: recibir peticiones por canales humanos,
 
 | Decision / hipotesis | Estatus | Evidencia | Implicacion |
 | --- | --- | --- | --- |
-| Hermes como runtime central | DECISION CTO PROVISIONAL FUERTE | SRC-INT-001 ADR-002; docs oficiales confirman gateway, tools, skills, cron y plugins. | Stage 03 debe validarlo con PoC, no prometerlo sin prueba. |
-| Hermes para email y WhatsApp | HIPOTESIS TECNICA A VALIDAR | Docs oficiales confirman email y WhatsApp Cloud/Baileys; Kapso es plugin externo. | Elegir canal tras PoC de seguridad. |
+| Hermes como runtime central | DECISION ARQUITECTONICA TOMADA | SRC-INT-001 ADR-002; docs oficiales confirman gateway, tools, skills, cron y plugins. | Stage 03 debe disenar como se implementa Hermes: gateway, toolsets, workers, permisos, logs, skills, background tasks y pruebas tecnicas. No debe reabrir si Hermes entra salvo bloqueo grave. |
+| Hermes para email y WhatsApp | DECISION ARQUITECTONICA TOMADA | Docs oficiales confirman email y WhatsApp Cloud/Baileys; Kapso + Hermes queda como via objetivo para WhatsApp en el pack 08. | Stage 03 debe especificar integracion, seguridad y fallbacks por canal. |
 | Subagentes/delegacion | HIPOTESIS TECNICA A VALIDAR | Docs oficiales confirman delegacion con contexto aislado. | Necesita paquetes de contexto explicitos. |
 | Workers deterministas como tools | HIPOTESIS TECNICA A VALIDAR | Plugins/MCP/tools lo permiten conceptualmente. | Hay que construir contrato de tools propio. |
 
@@ -45,13 +45,15 @@ Hermes tocaria el dolor de coordinacion: recibir peticiones por canales humanos,
 
 | Opcion | Ventaja | Riesgo | Estatus |
 | --- | --- | --- | --- |
-| Hermes core + workers | Agentic real con herramientas controladas. | Permisos y seguridad requieren diseno fino. | DECISION CTO PROVISIONAL FUERTE |
-| Workers propios sin Hermes | Control total. | Pierde gateway/skills/delegacion existentes. | OPCION ABIERTA |
-| n8n core | Facil para flujos simples. | El contexto CTO lo descarta como core conversacional. | NO DECIDIR TODAVIA |
+| Hermes core + workers | Arquitectura objetivo: runtime agentic con herramientas controladas. | Permisos y seguridad requieren diseno fino. | DECISION ARQUITECTONICA TOMADA |
+| Workers propios sin Hermes | Control total. | Pierde gateway/skills/delegacion existentes. | FALLBACK SOLO ANTE BLOQUEO GRAVE |
+| n8n core | Facil para flujos simples. | El contexto CTO lo descarta como core conversacional. | DESCARTADO COMO CORE / SOLO AUXILIAR PUNTUAL |
 
 ## 8. Diseno candidato / hipotesis preferente
 
-Hipotesis preferente: Hermes Gateway recibe canales y decide; workers propios ejecutan acciones estructurales. Hermes no debe escribir directamente estructuras criticas sin tool deterministic que valide inputs, permisos y logs.
+Hermes no es una opcion exploratoria mas. Es la arquitectura objetivo del runtime agentic. La incertidumbre pendiente esta en la configuracion, seguridad, despliegue y limites operativos, no en la direccion arquitectonica.
+
+Diseno candidato: Hermes Gateway recibe canales y decide; workers propios ejecutan acciones estructurales. Hermes no debe escribir directamente estructuras criticas sin tool deterministic que valide inputs, permisos y logs.
 
 ## 9. Inputs y outputs probables
 
@@ -93,11 +95,11 @@ Hipotesis preferente: Hermes Gateway recibe canales y decide; workers propios ej
 | Riesgo | Impacto | Probabilidad | Mitigacion | Estatus |
 | --- | --- | --- | --- | --- |
 | Toolset demasiado amplio en canal externo | Alto | Media | Toolsets minimos, allowlist y tests adversariales. | PENDIENTE DE VALIDACION TECNICA |
-| Hermes no estable 24/7 con plugins | Alto | Media | PoC larga con restart, logs y healthchecks. | PENDIENTE DE VALIDACION TECNICA |
+| Hermes no estable 24/7 con plugins | Alto | Media | Prueba tecnica de integracion con restart, logs y healthchecks. | PENDIENTE DE VALIDACION TECNICA |
 | Subagentes sin contexto suficiente | Medio | Alta | Paquetes de input explicitos y plantillas de handoff. | HIPOTESIS TECNICA A VALIDAR |
 | Respuestas automaticas inseguras | Alto | Media | Clasificador de riesgo y escalado humano. | PENDIENTE DE VALIDACION TECNICA |
 
-## 15. Prueba minima / PoC recomendada
+## 15. Prueba minima / prueba tecnica recomendada
 
 - Fixture: Hermes en VPS sandbox, email interno, WhatsApp/Kapso o Cloud test, tool mock de CRM/RAG/escalado.
 - Pasos: mensaje entrante, clasificar, buscar contexto mock, responder o escalar, ejecutar cron diario.
@@ -110,14 +112,14 @@ Hipotesis preferente: Hermes Gateway recibe canales y decide; workers propios ej
 - DClick: ¿que canales seran internos y cuales externos?
 - Documentacion tecnica: ¿que version exacta de Hermes/plugin usar?
 - Legal/RGPD: ¿puede Hermes procesar datos de clientes con el provider LLM elegido?
-- Comerciales: no decidir promesas de autonomia sin PoC.
+- Comerciales: no decidir promesas de autonomia sin prueba tecnica de integracion.
 
 ## 17. Recomendacion para Stage 00/01/02/03
 
-- Stage 00: capturar Hermes como decision CTO fuerte y fuentes oficiales.
+- Stage 00: capturar Hermes como decision arquitectonica tomada y fuentes oficiales.
 - Stage 01: auditar si Hermes resuelve autonomia y trabajo repetitivo.
 - Stage 02: separar core minimo de extensiones futuras.
-- Stage 03: disenar toolsets, permisos, workers y pruebas antes de cerrar blueprint.
+- Stage 03: especificar la prueba tecnica minima de integracion antes de cerrar compromiso operativo/produccion, y disenar toolsets, permisos, workers y pruebas antes de cerrar blueprint.
 
 ## 18. Source Map
 
@@ -128,4 +130,3 @@ Hipotesis preferente: Hermes Gateway recibe canales y decide; workers propios ej
 | SRC-HER-003 | https://hermes-ai.net/docs/quickstart/ | docs/guia | Quickstart y prerequisitos; usar con cautela si redirige a docs oficiales. | media |
 | SRC-HER-004 | https://hermes-agent.nousresearch.com/docs/ | docs oficiales | Runtime, tools, gateway, cron, seguridad. | alta |
 | SRC-HER-005 | https://github.com/nousresearch/hermes-agent | repo oficial | Capacidades, gateway, VPS, cron, skills. | alta |
-

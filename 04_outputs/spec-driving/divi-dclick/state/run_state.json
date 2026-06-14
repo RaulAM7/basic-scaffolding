@@ -2,13 +2,13 @@
   "case_id": "divi-dclick",
   "run_id": "divi-dclick-20260614",
   "mode": "standard",
-  "run_status": "INITIALIZED",
-  "active_stage": "00",
+  "run_status": "IN_PROGRESS",
+  "active_stage": "03",
   "stage_statuses": {
-    "00": "READY",
-    "01": "PENDING",
-    "02": "PENDING",
-    "03": "PENDING",
+    "00": "PASSED",
+    "01": "PASSED",
+    "02": "PASSED",
+    "03": "READY",
     "04": "PENDING",
     "06": "PENDING"
   },
@@ -20,11 +20,15 @@
     "04": "artifacts/04_commercial_proposal_v1.md",
     "06": "artifacts/06_execution_plan_v1.md"
   },
-  "review_paths": {},
+  "review_paths": {
+    "00": "reviews/stage_00_review_iter_01.md",
+    "01": "reviews/stage_01_review_iter_01.md",
+    "02": "reviews/stage_02_review_iter_02.md"
+  },
   "iteration_counts": {
-    "00": 0,
-    "01": 0,
-    "02": 0,
+    "00": 1,
+    "01": 1,
+    "02": 2,
     "03": 0,
     "04": 0,
     "06": 0
@@ -33,7 +37,7 @@
   "blocked_questions": [],
   "assumptions": [],
   "overrides": [],
-  "last_action": "initialized",
-  "next_action": "Add raw material to raw/ and run Stage 00.",
+  "last_action": "Stage 02 hardening iteration passed review.",
+  "next_action": "Run Stage 03 technical presales blueprint only when explicitly requested; do not execute automatically.",
   "updated_at": "2026-06-14"
 }

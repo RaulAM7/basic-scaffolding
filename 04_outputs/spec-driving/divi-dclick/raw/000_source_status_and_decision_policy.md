@@ -31,23 +31,32 @@ Ejemplos:
 - El sistema debe tener componentes always-on.
 - Atencion cliente debe ser autonoma por defecto, con escalado por riesgo.
 
+### DECISION ARQUITECTONICA TOMADA
+Decision tecnica ya adoptada como arquitectura objetivo del proyecto. Stage 03 no debe reabrir si entra o no entra salvo bloqueo tecnico, legal u operativo grave. Lo que debe hacer Stage 03 es disenar como se implementa, que limites tiene, que pruebas minimas requiere y que fallback existe si la implementacion concreta falla.
+
+Ejemplos:
+- Hermes como runtime agentic central.
+- Kapso + Hermes como via objetivo para WhatsApp.
+- n8n fuera del core conversacional/agentic.
+
 ### DECISION CTO PROVISIONAL FUERTE
 Decision tecnica preferente tomada en conversacion CTO, pero revisable en Stage 03 si la evidencia lo exige.
 
 Ejemplos:
-- Hermes como runtime agentic central.
 - VPS como instalacion unica.
-- n8n fuera del core.
 - BDNS watcher hibrido.
+- Drive como casa/biblioteca humana y VPS como mirror tecnico.
 
 ### HIPOTESIS TECNICA A VALIDAR
-Opcion con buena pinta, pero que necesita documentacion, PoC o prueba tecnica.
+Opcion con buena pinta, pero que necesita documentacion, smoke test, prueba tecnica o PoC para cerrar configuracion concreta.
 
 Ejemplos:
-- Kapso + Hermes como via preferente para WhatsApp.
 - pgvector/FTS como indice ligero.
 - mirror Drive <-> VPS regenerable.
 - integracion concreta de Hermes con email/WhatsApp/skills/background tasks.
+- modelo exacto de embeddings.
+- scopes Google.
+- cliente BDNS propio vs `bdns-fetch`.
 
 ### OPCION ABIERTA
 Decision que no debe cerrarse todavia porque hay varias alternativas razonables.
@@ -78,13 +87,13 @@ Ejemplos:
 | Vivi y Maria no usan terminal/GitHub/repos como interfaz principal | REQUISITO DURO | La interaccion debe ser WhatsApp/email/Drive/Hermes Desktop opcional. |
 | Atencion cliente autonoma por defecto | REQUISITO DURO | El valor principal es reducir atencion manual; debe escalar solo por riesgo. |
 | VPS como instalacion unica | DECISION CTO PROVISIONAL FUERTE | Evita versiones locales divergentes. |
-| Hermes como runtime agentic central | DECISION CTO PROVISIONAL FUERTE | Pendiente de validacion contra docs/PoC. |
-| n8n fuera del core | DECISION CTO PROVISIONAL FUERTE | Solo auxiliar puntual si hiciera falta. |
+| Hermes como runtime agentic central | DECISION ARQUITECTONICA TOMADA | Stage 03 debe disenar implementacion, toolsets, seguridad, workers y pruebas; no reabrir si Hermes entra salvo bloqueo grave. |
+| n8n fuera del core | DECISION ARQUITECTONICA TOMADA | Descartado como core conversacional/agentic. Solo auxiliar puntual si apareciera una integracion ad hoc. |
 | Drive como casa/biblioteca humana y VPS como mirror tecnico | DECISION CTO PROVISIONAL FUERTE | Requiere disenar sync controlado. |
 | Markdown como conocimiento operativo base | DECISION CTO PROVISIONAL FUERTE | Fuente documental auditable. |
 | RAG/indice ligero como derivado, no fuente de verdad | HIPOTESIS TECNICA A VALIDAR | Debe ser regenerable y no bloquear el sistema. |
 | BDNS watcher hibrido | DECISION CTO PROVISIONAL FUERTE | Pescador determinista + archivador agentic + commit determinista. |
-| Kapso + Hermes para WhatsApp | HIPOTESIS TECNICA A VALIDAR | Revisar docs, plugin, costes y estabilidad. |
+| Kapso + Hermes para WhatsApp | DECISION ARQUITECTONICA TOMADA | Via objetivo para WhatsApp. Validar numero, webhooks, costes, templates, opt-in y estabilidad. Cloud API directa queda como fallback. |
 | CRM adapter agnostico | DECISION CTO PROVISIONAL FUERTE | Evita lock-in. |
 | CRM concreto | OPCION ABIERTA | Twenty/Baserow/NocoDB/GoHighLevel. |
 | Envio masivo de campanas con aprobacion humana | DECISION CTO PROVISIONAL FUERTE | Por RGPD, reputacion y riesgo comercial. |
@@ -94,7 +103,6 @@ Ejemplos:
 - Ningun research pack sustituye Stage 03.
 - Ningun research pack debe interpretarse como promesa tecnica al cliente.
 - Las capacidades confirmadas por documentacion oficial pueden alimentar Stage 03, pero siguen dependiendo del alcance aprobado en Stage 02.
-- Las capacidades vistas solo en repositorios, ejemplos o README deben validarse con PoC antes de convertirse en compromiso.
+- Las capacidades vistas solo en repositorios, ejemplos o README deben validarse con smoke test o prueba tecnica de integracion antes de cerrar compromiso operativo/produccion.
 - Las dudas legales/RGPD deben permanecer como preguntas abiertas hasta revision especifica.
 - Las decisiones de precio, plan comercial y contratos quedan fuera de este paquete.
-
