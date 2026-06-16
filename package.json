@@ -1,0 +1,42 @@
+{
+  "name": "create-basic-scaffolding",
+  "version": "1.0.0",
+  "description": "CLI that scaffolds the basic-scaffolding Agentic Repo Harness workspace.",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "bin": {
+    "create-basic-scaffolding": "bin/create-basic-scaffolding.js",
+    "basic-scaffolding": "bin/create-basic-scaffolding.js"
+  },
+  "files": [
+    ".claude",
+    ".codex",
+    "00_inbox/README.md",
+    "01_harness",
+    "02_context",
+    "03_specs",
+    "04_outputs/.keep",
+    "05_scratch/.keep",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "README.md",
+    "runners",
+    "shared",
+    "bin",
+    "lib",
+    "test"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "scaffold",
+    "template",
+    "cli",
+    "agents",
+    "workspace"
+  ]
+}
